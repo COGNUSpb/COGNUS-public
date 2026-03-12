@@ -21,11 +21,6 @@
 - `visual-identity.md` - executive summary of the visual identity.
 - `frontend/COGNUS_identidade_visual.md` - authoritative frontend design system.
 
-### Research and scientific basis
-
-- `primary-work-article/README.md` - primary paper source and diagram assets.
-- `systematic-mapping/README.md` - systematic mapping source set and reproducible supplement.
-
 ## Public Branch Policy
 
 - Only public, traceable, author-created documentation relevant to the released artifact belongs here.

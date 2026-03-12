@@ -252,7 +252,7 @@ const buildCrossDocumentConformity = ({ generatedAtUtc, changeId, runId, fingerp
       'docs/orchestrator-conceptual.puml',
       'docs/orchestrator-overview-macro.puml',
     ],
-    low_level_refs: ['docs/primary-work-article/low-level-architecture.puml'],
+    low_level_refs: [''],
     consistency_statement:
       'Arquitetura de alto e baixo nível preserva separação entre plano de controle, execução Fabric e operação do host/VM external-linux.',
   },

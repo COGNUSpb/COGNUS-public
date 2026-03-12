@@ -12,7 +12,6 @@ The frontend should communicate three attributes:
 
 Application references:
 - `docs/visual-identity.md`
-- `docs/primary-work-article/low-level-architecture-v2-no-notes.puml`
 
 ## 2) Color Palette
 

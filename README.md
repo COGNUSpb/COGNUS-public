@@ -72,8 +72,6 @@ Manual functional check:
 - [docs/auto-provisioning.md](docs/auto-provisioning.md)
 - [docs/marketplace-workflow.md](docs/marketplace-workflow.md)
 - [docs/visual-identity.md](docs/visual-identity.md)
-- [docs/primary-work-article/README.md](docs/primary-work-article/README.md)
-- [docs/systematic-mapping/README.md](docs/systematic-mapping/README.md)
 
 ## License And Lineage
 

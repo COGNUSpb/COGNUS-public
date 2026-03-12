@@ -9,8 +9,6 @@ Define the automation baseline for provisioning, lifecycle handling, and service
 - change traceability;
 - reduced manual intervention.
 
-This guide is aligned with `docs/primary-work-article/low-level-architecture-v2-no-notes.puml` and describes the current public baseline rather than future work packages.
-
 ## Scope
 
 This document covers:

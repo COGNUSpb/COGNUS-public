@@ -108,5 +108,3 @@ These credentials are intentionally external to the repository and are not part 
 
 - [README.md](README.md)
 - [docs/README.md](docs/README.md)
-- [docs/primary-work-article/README.md](docs/primary-work-article/README.md)
-- [docs/systematic-mapping/README.md](docs/systematic-mapping/README.md)

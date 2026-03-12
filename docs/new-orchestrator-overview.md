@@ -85,5 +85,3 @@ Future capabilities may still be discussed in the scientific material, but only 
 - Operations: `docs/auto-provisioning.md`, `docs/marketplace-workflow.md`
 - Design system: `docs/visual-identity.md`, `docs/frontend/COGNUS_identidade_visual.md`
 - Technical architecture: `docs/orchestrator-overview-macro.puml`, `docs/orchestrator-conceptual.puml`, `docs/orchestrator-architecture.puml`
-- Primary paper source: `docs/primary-work-article/README.md`
-- Scientific basis and supplement: `docs/systematic-mapping/README.md`

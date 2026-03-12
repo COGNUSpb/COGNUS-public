@@ -39,4 +39,3 @@ Semantic states:
 
 - Full frontend guidelines: `docs/frontend/COGNUS_identidade_visual.md`
 - Product architecture reference: `docs/new-orchestrator-overview.md`
-- Primary paper source: `docs/primary-work-article/README.md`
