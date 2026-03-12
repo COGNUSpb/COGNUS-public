@@ -77,4 +77,4 @@ Manual functional check:
 
 ## License And Lineage
 
-This snapshot is distributed under Apache-2.0. It contains original COGNUS code and documentation plus derivative work built on top of the Apache-licensed Hyperledger Cello codebase. See [LICENSE](LICENSE), [NOTICE](NOTICE), and [CITATION.cff](CITATION.cff).
+This snapshot is distributed under Apache-2.0. It contains original COGNUS code and documentation plus derivative work built on top of the Apache-licensed Hyperledger Cello codebase. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
