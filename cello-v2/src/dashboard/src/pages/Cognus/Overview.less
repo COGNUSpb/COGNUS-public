@@ -1,0 +1,1199 @@
+.root {
+  --brand-night: #1b2559;
+  --brand-action: #2f6bff;
+  --brand-network: #2cb6a6;
+  --brand-evidence: #7c3aed;
+  --status-success: #16a34a;
+  --status-info: #0284c7;
+  --status-warning: #d97706;
+  --status-danger: #dc2626;
+  --neutral-950: #0b1022;
+  --neutral-900: #111827;
+  --neutral-700: #374151;
+  --neutral-500: #6b7280;
+  --neutral-200: #e5e7eb;
+  --neutral-100: #f3f4f6;
+  --neutral-0: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heroCard {
+  background:
+    radial-gradient(circle at 12% 14%, rgba(47, 107, 255, 0.28) 0%, rgba(47, 107, 255, 0) 34%),
+    radial-gradient(circle at 78% 12%, rgba(44, 182, 166, 0.24) 0%, rgba(44, 182, 166, 0) 30%),
+    radial-gradient(circle at 92% 82%, rgba(124, 58, 237, 0.22) 0%, rgba(124, 58, 237, 0) 28%),
+    linear-gradient(120deg, rgba(11, 16, 34, 0.98) 0%, rgba(27, 37, 89, 0.96) 28%, rgba(47, 107, 255, 0.92) 56%, rgba(44, 182, 166, 0.9) 78%, rgba(124, 58, 237, 0.84) 100%);
+  border: 1px solid rgba(47, 107, 255, 0.14);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(11, 16, 34, 0.16);
+}
+
+.heroHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.heroMeta {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  justify-items: end;
+}
+
+.heroMetaText {
+  color: rgba(243, 244, 246, 0.78) !important;
+}
+
+.title {
+  margin: 0 !important;
+  color: #ffffff !important;
+}
+
+.subtitle {
+  margin-bottom: 0 !important;
+  max-width: 760px;
+  color: rgba(243, 244, 246, 0.84) !important;
+}
+
+.warningAlert {
+  background: rgba(217, 182, 74, 0.1);
+  border: 1px solid rgba(217, 119, 6, 0.35);
+  border-radius: 12px;
+}
+
+.organizationCard {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(44, 182, 166, 0.12) 0%, rgba(44, 182, 166, 0) 34%),
+    radial-gradient(circle at 92% 0%, rgba(124, 58, 237, 0.08) 0%, rgba(124, 58, 237, 0) 34%),
+    linear-gradient(180deg, #fbfcff 0%, #f3f4f6 100%);
+  border: 1px solid rgba(27, 37, 89, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(17, 24, 39, 0.08);
+}
+
+.overviewSummaryStrip {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.summaryCard {
+  border: 1px solid rgba(27, 37, 89, 0.08);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 255, 0.96) 100%);
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.06);
+}
+
+.summaryLabel {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--neutral-500) !important;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.summaryValue,
+.summaryValueAlert {
+  display: block;
+  color: var(--brand-night);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.summaryValueAlert {
+  color: var(--status-danger);
+}
+
+.summaryMeta {
+  display: block;
+  margin-top: 10px;
+  color: var(--neutral-500);
+}
+
+.organizationHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.organizationFilterBar {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.organizationEyebrow {
+  display: block;
+  color: var(--neutral-500) !important;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.organizationTitle {
+  margin: 2px 0 4px !important;
+  color: var(--brand-night) !important;
+}
+
+.organizationDescription {
+  margin: 0 !important;
+  color: var(--neutral-700) !important;
+}
+
+.organizationGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.organizationTile {
+  width: 100%;
+  padding: 18px;
+  text-align: left;
+  background:
+    radial-gradient(circle at top right, rgba(124, 58, 237, 0.08), transparent 30%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(243, 244, 246, 0.94) 100%);
+  border: 1px solid rgba(27, 37, 89, 0.08);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.organizationTile:hover {
+  border-color: rgba(47, 107, 255, 0.36);
+  box-shadow: 0 18px 32px rgba(17, 24, 39, 0.12);
+  transform: translateY(-1px);
+}
+
+.organizationTileHeader {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.organizationIdentity {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.organizationSeal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #2cb6a6 0%, #2f6bff 55%, #7c3aed 100%);
+  border-radius: 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.organizationTileActions {
+  display: grid;
+  gap: 10px;
+  justify-items: end;
+}
+
+.organizationSignalRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.organizationStatusSummary {
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+  color: #334155 !important;
+}
+
+.organizationTileName {
+  display: block;
+  color: var(--neutral-900) !important;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.organizationTileMeta {
+  display: block;
+  color: var(--neutral-500) !important;
+}
+
+.organizationKpiGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.organizationMetricTile {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(239, 244, 255, 0.9) 100%);
+  border: 1px solid rgba(47, 107, 255, 0.12);
+  border-radius: 14px;
+}
+
+.organizationMetricLabel {
+  color: var(--neutral-500) !important;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.organizationMetricTile strong {
+  color: var(--brand-night);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.organizationMetricTile span {
+  color: var(--neutral-500);
+  font-size: 13px;
+}
+
+.organizationTileFooter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: #1f2937;
+}
+
+.organizationSignalRail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.organizationComponentPreviewGrid {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.organizationComponentPreviewCard {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(27, 37, 89, 0.08);
+  border-radius: 16px;
+}
+
+.organizationComponentPreviewHeader {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--neutral-500);
+  font-size: 13px;
+}
+
+.organizationComponentPillList {
+  display: grid;
+  gap: 8px;
+}
+
+.organizationComponentPill {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background:
+    linear-gradient(145deg, rgba(47, 107, 255, 0.05) 0%, rgba(44, 182, 166, 0.04) 100%);
+  border: 1px solid rgba(47, 107, 255, 0.1);
+  border-radius: 12px;
+}
+
+.organizationComponentPill strong {
+  display: block;
+  color: var(--neutral-900);
+}
+
+.organizationComponentPill span {
+  display: block;
+  color: var(--neutral-500);
+  font-size: 12px;
+}
+
+.organizationSignalPill {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  color: var(--neutral-700);
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(27, 37, 89, 0.08);
+  border-radius: 999px;
+}
+
+.mockBadge,
+.mockBadgeCompact {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--status-warning);
+  font-weight: 600;
+}
+
+.mockBadge {
+  padding: 6px 10px;
+  background: rgba(217, 119, 6, 0.08);
+  border: 1px solid rgba(217, 119, 6, 0.16);
+  border-radius: 999px;
+}
+
+.overviewLowerGrid {
+  display: grid;
+  gap: 16px;
+}
+
+.activityList {
+  display: grid;
+  gap: 12px;
+}
+
+.activityItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(27, 37, 89, 0.08);
+}
+
+.activityItem:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.activityBulletWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  min-height: 18px;
+  margin-top: 3px;
+}
+
+.activityBullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.activityBulletSuccess {
+  background: var(--status-success);
+}
+
+.activityBulletInfo {
+  background: var(--brand-action);
+}
+
+.activityBulletDanger {
+  background: var(--status-danger);
+}
+
+.activityBulletWarning {
+  color: var(--status-warning);
+}
+
+.activityContent {
+  display: grid;
+  gap: 6px;
+}
+
+.activityMetaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.trendGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.trendTile {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(243, 246, 255, 0.94) 100%);
+  border: 1px solid rgba(27, 37, 89, 0.08);
+  border-radius: 16px;
+}
+
+.trendTileHeader {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trendValue {
+  color: var(--brand-night);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.trendMeta {
+  color: var(--neutral-500);
+  font-size: 13px;
+}
+
+.trendSpark {
+  height: 64px;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(47, 107, 255, 0.12) 0%, rgba(47, 107, 255, 0.02) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.trendSpark::after {
+  content: '';
+  position: absolute;
+  inset: 12px 10px 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.75) 12%, transparent 24%);
+  transform: skewX(-20deg);
+}
+
+.trendSparkBlue {
+  background:
+    radial-gradient(circle at 10% 80%, rgba(47, 107, 255, 0.18), transparent 30%),
+    linear-gradient(180deg, rgba(47, 107, 255, 0.16) 0%, rgba(47, 107, 255, 0.03) 100%);
+}
+
+.trendSparkGreen {
+  background:
+    radial-gradient(circle at 20% 70%, rgba(44, 182, 166, 0.2), transparent 32%),
+    linear-gradient(180deg, rgba(44, 182, 166, 0.16) 0%, rgba(44, 182, 166, 0.03) 100%);
+}
+
+.trendSparkRed {
+  background:
+    radial-gradient(circle at 22% 72%, rgba(220, 38, 38, 0.2), transparent 32%),
+    linear-gradient(180deg, rgba(220, 38, 38, 0.16) 0%, rgba(220, 38, 38, 0.03) 100%);
+}
+
+.organizationDrawerContent {
+  display: grid;
+  gap: 16px;
+}
+
+.workspaceCommandDeck {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at top left, rgba(44, 182, 166, 0.22), transparent 26%),
+    radial-gradient(circle at top right, rgba(124, 58, 237, 0.18), transparent 24%),
+    linear-gradient(120deg, rgba(27, 37, 89, 0.98) 0%, rgba(47, 107, 255, 0.92) 42%, rgba(17, 24, 39, 0.98) 74%, rgba(44, 182, 166, 0.94) 100%);
+  border: 1px solid rgba(47, 107, 255, 0.18);
+  border-radius: 18px;
+}
+
+.workspaceIdentityBlock {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.workspaceIdentitySeal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 20px;
+  background: linear-gradient(135deg, #2cb6a6 0%, #2f6bff 55%, #7c3aed 100%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.workspaceIdentityText {
+  display: grid;
+  gap: 4px;
+}
+
+.workspaceEyebrow {
+  color: rgba(243, 244, 246, 0.72) !important;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.workspaceTitle {
+  margin: 0 !important;
+  color: #ffffff !important;
+}
+
+.workspaceMetaRow,
+.workspaceCodeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  color: rgba(243, 244, 246, 0.82);
+}
+
+.workspaceCodeRow :global(.ant-typography) {
+  margin-bottom: 0;
+}
+
+.workspaceHeroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.vmAccessWindowBody,
+.vmAccessForm {
+  display: grid;
+  gap: 16px;
+}
+
+.vmAccessMachineGrid {
+  display: grid;
+  gap: 12px;
+  max-height: 46vh;
+  padding-right: 4px;
+  overflow: auto;
+}
+
+.vmAccessMachineCard {
+  border: 1px solid rgba(27, 37, 89, 0.1);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(44, 182, 166, 0.08), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 251, 255, 0.96) 100%);
+}
+
+.vmAccessMachineHeader {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.vmAccessMachineTitle {
+  margin: 2px 0 0 !important;
+  color: var(--neutral-900) !important;
+}
+
+.vmAccessMachineFields {
+  display: grid;
+  gap: 12px;
+}
+
+.vmAccessSummary {
+  display: grid;
+  gap: 10px;
+  padding: 14px 16px;
+  background: rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+}
+
+.vmAccessSummaryRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vmAccessField {
+  display: grid;
+  gap: 8px;
+}
+
+.vmAccessUploadHint {
+  color: var(--neutral-500) !important;
+  font-size: 12px;
+}
+
+.vmAccessActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.workspaceHubLayout {
+  display: grid;
+  gap: 16px;
+  align-items: start;
+}
+
+.workspaceHubSidebar,
+.workspaceHubMain,
+.workspaceDetailStack {
+  display: grid;
+  gap: 14px;
+}
+
+.workspaceHubGrid,
+.workspaceSummaryGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.workspaceNavCard {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  text-align: left;
+  background:
+    radial-gradient(circle at top right, rgba(124, 58, 237, 0.08), transparent 26%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(242, 247, 255, 0.94) 100%);
+  border: 1px solid rgba(27, 37, 89, 0.08);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.workspaceNavCard:hover {
+  border-color: rgba(47, 107, 255, 0.28);
+  box-shadow: 0 18px 28px rgba(17, 24, 39, 0.08);
+  transform: translateY(-1px);
+}
+
+.workspaceNavCardHeader {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.workspaceNavCardTitle {
+  margin: 2px 0 0 !important;
+  color: var(--neutral-900) !important;
+}
+
+.workspaceNavMetric {
+  color: var(--brand-night);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.workspaceNavDescription {
+  margin-bottom: 0 !important;
+  color: var(--neutral-700) !important;
+}
+
+.workspaceNavLink {
+  color: var(--brand-action);
+  font-weight: 600;
+}
+
+.workspaceDockTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 0 0;
+}
+
+.workspaceDockTabs :global(.ant-btn) {
+  color: var(--brand-night);
+  background: rgba(47, 107, 255, 0.06);
+  border: 1px solid rgba(47, 107, 255, 0.12);
+  border-radius: 999px;
+}
+
+.workspaceMainGrid {
+  display: grid;
+  gap: 16px;
+  align-items: start;
+}
+
+.workspaceTrustColumn,
+.workspaceTopologyColumn,
+.workspaceActionRail {
+  display: grid;
+  gap: 14px;
+}
+
+.workspaceSectionCard,
+.topologyDomainCard,
+.chaincodeCard {
+  border: 1px solid rgba(27, 37, 89, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+}
+
+.workspaceSectionCard {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(247, 250, 255, 0.96) 100%);
+}
+
+.workspaceActionStripCard {
+  margin-bottom: 16px;
+  background:
+    radial-gradient(circle at top right, rgba(124, 58, 237, 0.08), transparent 24%),
+    radial-gradient(circle at top left, rgba(44, 182, 166, 0.08), transparent 20%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.99) 0%, rgba(244, 247, 255, 0.97) 100%);
+}
+
+.workspaceSectionBlock {
+  display: grid;
+  gap: 12px;
+}
+
+.workspaceSectionHeading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.workspaceSectionEyebrow {
+  display: block;
+  color: var(--neutral-500) !important;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.workspaceSectionTitle {
+  margin: 2px 0 0 !important;
+  color: var(--neutral-900) !important;
+}
+
+.workspaceSignalList,
+.workspaceArtifactList {
+  display: grid;
+  gap: 10px;
+}
+
+.workspaceActionStripSummary {
+  margin: 0 0 14px !important;
+  color: var(--neutral-700) !important;
+}
+
+.actionRailButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.workspaceSignalRow,
+.workspaceArtifactRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: rgba(243, 244, 246, 0.85);
+  border: 1px solid rgba(27, 37, 89, 0.06);
+  border-radius: 12px;
+}
+
+.topologyDomainGrid,
+.chaincodeGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.topologyDomainSummary {
+  margin-bottom: 10px !important;
+  color: var(--neutral-700) !important;
+}
+
+.workspaceTopologyPanels {
+  display: grid;
+  gap: 14px;
+}
+
+.topologySummaryStrip {
+  display: grid;
+  gap: 12px;
+}
+
+.topologySummaryMetric {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  background:
+    linear-gradient(140deg, rgba(255, 255, 255, 0.98) 0%, rgba(239, 244, 255, 0.92) 100%);
+  border: 1px solid rgba(47, 107, 255, 0.12);
+  border-radius: 14px;
+}
+
+.topologySummaryMetric strong {
+  color: var(--brand-night);
+  font-size: 26px;
+  line-height: 1;
+}
+
+.topologySummaryMetric span {
+  color: var(--neutral-500);
+  font-size: 13px;
+}
+
+.topologyFamilyGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.topologyFamilyCard {
+  border: 1px solid rgba(27, 37, 89, 0.1);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top right, rgba(124, 58, 237, 0.06), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 251, 255, 0.96) 100%);
+}
+
+.topologyFamilyHeader {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.topologyFamilyTitle {
+  margin: 2px 0 0 !important;
+  color: var(--neutral-900) !important;
+}
+
+.topologyNodeList {
+  display: grid;
+  gap: 8px;
+}
+
+.topologyNode {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 12px;
+  text-align: left;
+  background:
+    linear-gradient(145deg, rgba(47, 107, 255, 0.05) 0%, rgba(44, 182, 166, 0.03) 100%);
+  border: 1px solid rgba(47, 107, 255, 0.12);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.topologyNode:hover:not(:disabled) {
+  border-color: rgba(47, 107, 255, 0.24);
+  box-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
+}
+
+.topologyNode:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+.topologyNodeMeta {
+  display: block;
+  color: var(--neutral-500) !important;
+}
+
+.channelLaneList {
+  display: grid;
+  gap: 10px;
+}
+
+.businessScopeGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.businessGroupCard {
+  border: 1px solid rgba(27, 37, 89, 0.1);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(44, 182, 166, 0.08), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 251, 255, 0.96) 100%);
+}
+
+.businessGroupHeader {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.businessGroupTitle {
+  margin: 2px 0 0 !important;
+  color: var(--neutral-900) !important;
+}
+
+.businessChannelStack {
+  display: grid;
+  gap: 10px;
+}
+
+.businessChannelCard {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(27, 37, 89, 0.08);
+  border-radius: 14px;
+}
+
+.businessChannelHeader {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.businessChaincodePill {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  background: rgba(47, 107, 255, 0.05);
+  border: 1px solid rgba(47, 107, 255, 0.12);
+  border-radius: 999px;
+}
+
+.businessChaincodePill strong {
+  color: var(--brand-night);
+}
+
+.businessChaincodePill span {
+  color: var(--neutral-500);
+  font-size: 12px;
+}
+
+.channelLane {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  background: linear-gradient(145deg, rgba(44, 182, 166, 0.08) 0%, rgba(255, 255, 255, 0.96) 100%);
+  border: 1px solid rgba(44, 182, 166, 0.16);
+  border-radius: 16px;
+}
+
+.channelLaneHeader {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.channelChaincodeRail,
+.chaincodeTagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.actionRailButtons :global(.ant-btn) {
+  flex: 1 1 190px;
+  min-height: 40px;
+  font-weight: 600;
+  border-radius: 12px;
+}
+
+.actionRailButtons :global(.ant-btn):first-child,
+.actionRailButtons :global(.ant-btn):nth-child(2) {
+  color: #ffffff;
+  background: linear-gradient(135deg, #1b2559 0%, #2f6bff 100%);
+  border-color: transparent;
+}
+
+.actionRailButtons :global(.ant-btn):nth-child(3),
+.actionRailButtons :global(.ant-btn):nth-child(4) {
+  color: #ffffff;
+  background: linear-gradient(135deg, #1b2559 0%, #2cb6a6 78%, #7c3aed 100%);
+  border-color: transparent;
+}
+
+.drawerHeaderRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawerInfoList {
+  display: grid;
+  gap: 8px;
+}
+
+.drawerInfoRow {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.organizationTagLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.nodeRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nodeAction {
+  padding-left: 0 !important;
+}
+
+.businessGroupSection {
+  border: 1px solid #e4e8f6;
+}
+
+.businessGroupGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.businessGroupCard {
+  border: 1px solid #d9e2fb;
+}
+
+.channelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  background: #f8faff;
+  border: 1px solid #e2e8fb;
+  border-radius: 8px;
+}
+
+.channelAction {
+  padding-left: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .overviewSummaryStrip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .overviewSummaryStrip {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .organizationFilterBar {
+    grid-template-columns: minmax(0, 1.2fr) repeat(4, minmax(160px, 1fr)) auto;
+    align-items: center;
+  }
+
+  .organizationKpiGrid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .organizationComponentPreviewGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .overviewLowerGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .businessGroupGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .workspaceMainGrid {
+    grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.6fr) minmax(260px, 0.95fr);
+  }
+
+  .workspaceHubLayout {
+    grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.55fr);
+  }
+
+  .topologySummaryStrip,
+  .topologyFamilyGrid,
+  .chaincodeGrid,
+  .businessScopeGrid,
+  .workspaceHubGrid,
+  .workspaceSummaryGrid,
+  .vmAccessMachineFields,
+  .trendGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .trendGrid .trendTile:last-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 880px) {
+  .workspaceCommandDeck {
+    padding: 16px;
+  }
+
+  .actionRailButtons {
+    display: grid;
+  }
+
+  .heroHeader,
+  .heroMeta,
+  .workspaceIdentityBlock,
+  .channelLaneHeader,
+  .topologyFamilyHeader,
+  .businessGroupHeader,
+  .businessChannelHeader,
+  .workspaceNavCardHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .heroMeta {
+    justify-items: start;
+  }
+
+  .organizationTileHeader,
+  .organizationIdentity,
+  .organizationTileFooter {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

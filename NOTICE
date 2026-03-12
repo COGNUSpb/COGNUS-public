@@ -1,0 +1,14 @@
+COGNUS public-main
+
+This repository snapshot contains original COGNUS code and documentation plus derivative work based on Hyperledger Cello, which is distributed under the Apache License, Version 2.0.
+
+The public-main branch intentionally excludes:
+- private credentials and bootstrap secrets;
+- generated runtime state, cryptographic material, and ledgers;
+- copied upstream documentation not authored for this snapshot;
+- third-party PDFs and local working files that are not part of the public artifact.
+
+Public attribution and licensing are defined by:
+- LICENSE
+- CITATION.cff
+- ARTIFACT.md

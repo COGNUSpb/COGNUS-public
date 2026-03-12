@@ -1,0 +1,145 @@
+import { extend } from 'umi-request';
+import { notification } from 'antd';
+import { history, formatMessage } from 'umi';
+import { stringify } from 'qs';
+import { revokeAllVmAccessSessions } from '@/services/vmAccessSession';
+
+/**
+ * Error handler
+ */
+const errorHandler = error => {
+  const skipErrorHandler = Boolean(
+    error?.request?.options?.skipErrorHandler || error?.options?.skipErrorHandler
+  );
+  if (skipErrorHandler) {
+    return;
+  }
+
+  const { response, data } = error;
+
+  if (!response) {
+    notification.error({
+      message: formatMessage({
+        id: 'error.network',
+        defaultMessage: 'Network Error',
+      }),
+    });
+    return;
+  }
+
+  const { status, url } = response;
+
+  // Handle specific error cases
+  if (status === 401) {
+    const api = url.split('/').pop();
+
+    if (api === 'login') {
+      notification.error({
+        message: formatMessage({
+          id: 'error.login.invalidCredentials',
+          defaultMessage: 'Invalid username or password.',
+        }),
+      });
+      return;
+    }
+
+    notification.error({
+      message: formatMessage({
+        id: 'error.login.expired',
+        defaultMessage: 'Not logged in or session expired. Please log in again.',
+      }),
+    });
+    revokeAllVmAccessSessions({
+      clearToken: true,
+      reason: 'session_expired',
+    });
+    history.replace({
+      pathname: '/user/login',
+      search: stringify({
+        redirect: window.location.href,
+      }),
+    });
+    return;
+  }
+
+  if (status === 409) {
+    const api = url.split('/').pop();
+    if (api === 'register') {
+      notification.error({
+        message: formatMessage({
+          id: 'error.register.duplicate',
+          defaultMessage: 'Email address or organization name already exists.',
+        }),
+      });
+      return;
+    }
+  }
+
+  // Generic error handling
+  const errorMessage = formatMessage({
+    id: `error.request.${status}`,
+    defaultMessage: `Request error (${status})`,
+  });
+
+  const detailMessage =
+    data?.detail ||
+    data?.msg ||
+    formatMessage({
+      id: 'error.request.generic',
+      defaultMessage: 'An error occurred while processing your request.',
+    });
+
+  const safeDetailMessage = (obj => {
+    if (typeof obj === 'string') {
+      return obj;
+    }
+    if (typeof obj === 'object') {
+      return JSON.stringify(obj);
+    }
+    return String(obj);
+  })(detailMessage);
+
+  notification.error({
+    message: errorMessage,
+    description: safeDetailMessage,
+  });
+
+  // API failures should not force page navigation; keep user in current workflow.
+  const requestUrl = String(url || '');
+  const isApiRequest = requestUrl.includes('/api/');
+  if (isApiRequest) {
+    return;
+  }
+
+  if (status === 403) {
+    history.push('/exception/403');
+  } else if (status >= 500 && status <= 504) {
+    history.push('/exception/500');
+  } else if (status >= 404 && status < 422) {
+    history.push('/exception/404');
+  }
+};
+
+const request = extend({
+  errorHandler,
+  credentials: 'include',
+});
+
+request.interceptors.request.use(async (url, options) => {
+  const token = window.localStorage.getItem('cello-token');
+  if (url.indexOf('api/v1/login') < 0 && url.indexOf('api/v1/register') < 0 && token) {
+    const headers = {
+      Authorization: `JWT ${token}`,
+    };
+    return {
+      url,
+      options: { ...options, headers },
+    };
+  }
+  return {
+    url,
+    options,
+  };
+});
+
+export default request;

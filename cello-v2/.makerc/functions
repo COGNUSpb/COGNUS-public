@@ -1,0 +1,26 @@
+define build_docker_locally
+	$(eval TARGET = ${patsubst build/docker/$(1)/%/$(DUMMY),%,${@}})
+	$(eval IMG_NAME = $(2)-$(TARGET))
+	@mkdir -p $(@D)
+	@echo "Building docker $(TARGET)"
+	@cat build_image/docker/$(1)/$(TARGET)/Dockerfile.in \
+		| sed -e 's|_DOCKER_BASE_|$(DOCKER_BASE)|g' \
+		| sed -e 's|_NS_|$(DOCKER_NS)|g' \
+		| sed -e 's|_TAG_|$(IMG_TAG)|g' \
+		> $(@D)/Dockerfile
+	docker build -f $(@D)/Dockerfile \
+		-t $(IMG_NAME) \
+		-t $(IMG_NAME):$(IMG_TAG) \
+		. ;
+	@touch $@ ;
+endef
+
+define build_docker_hub
+	dir=$*; \
+	IMG=hyperledger/$(2)-$$dir; \
+	echo "Building $$IMG"; \
+	docker build \
+	-t $$IMG \
+	-t $$IMG:x86_64-latest \
+	build_image/dockerhub/latest/$(1)/$$dir
+endef

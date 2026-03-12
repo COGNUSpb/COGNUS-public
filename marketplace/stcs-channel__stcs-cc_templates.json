@@ -1,0 +1,1308 @@
+{
+  "generatedAt": "2025-10-18T06:19:37Z",
+  "schemaVersion": "25669d54469b",
+  "schemaHash": "25669d54469b4da58a1fce10488ee5f6599c51704ddefabf88265552a571b1e2",
+  "channel": "stcs-channel",
+  "chaincode": "stcs-cc",
+  "assets": [
+    {
+      "tag": "anamnesis",
+      "label": "Anamnese",
+      "description": "Registro de anamnese do paciente",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "consent",
+      "label": "Consentimento",
+      "description": "Registro de consentimento do paciente",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "diagnosis",
+      "label": "Diagnóstico",
+      "description": "Registro de diagnóstico do exame",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "digitalTwin",
+      "label": "Gêmeo Digital",
+      "description": "Gêmeo digital do paciente",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "doctor",
+      "label": "Médico",
+      "description": "Informações do médico",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "event",
+      "label": "Event",
+      "description": "Registro de Evento",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "exam",
+      "label": "Exame",
+      "description": "Registro de exame clínico",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "metaverse",
+      "label": "Metaverso",
+      "description": "Registro de Metaverso",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "patient",
+      "label": "Paciente",
+      "description": "Informações do paciente",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "room",
+      "label": "Sala do Metaverso",
+      "description": "Registro de Sala do Metaverso",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "session",
+      "label": "Session",
+      "description": "Registro de Sessão",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "treatment",
+      "label": "Tratamento",
+      "description": "Registro de tratamento do diagnóstico",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "user",
+      "label": "Usuário",
+      "description": "Informações do usuário",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "userRoom",
+      "label": "Sala de Usuário",
+      "description": "Informações sobre a sala em que o usuário se encontra",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "chatbot",
+      "label": "Chatbot",
+      "description": "Informações sobre o chatbot",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "question",
+      "label": "Pergunta",
+      "description": "Informações sobre uma pergunta feita no chatbot",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "answer",
+      "label": "Resposta",
+      "description": "Informações sobre uma resposta dada pelo chatbot",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "authentication",
+      "label": "Autenticação",
+      "description": "Registro de autenticação do usuário",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "device",
+      "label": "Dispositivo",
+      "description": "Identificação do dispositivo do usuário",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "teste",
+      "label": "Teste",
+      "description": "Registro de teste",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    },
+    {
+      "tag": "assetTypeListData",
+      "label": "AssetTypeListData",
+      "description": "AssetTypeListData",
+      "dynamic": false,
+      "readers": null,
+      "fields": [],
+      "relationships": []
+    }
+  ],
+  "transactions": [
+    {
+      "tag": "createAsset",
+      "label": "Create Asset",
+      "description": "",
+      "method": "POST",
+      "metaTx": true,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "asset",
+          "label": "",
+          "description": "List of assets to be created.",
+          "dataType": "[]@asset",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "updateAsset",
+      "label": "Update Asset",
+      "description": "",
+      "method": "PUT",
+      "metaTx": true,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "update",
+          "label": "",
+          "description": "Asset key and fields to be updated.",
+          "dataType": "@update",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "deleteAsset",
+      "label": "Delete Asset",
+      "description": "",
+      "method": "DELETE",
+      "metaTx": true,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "key",
+          "label": "",
+          "description": "Key of the asset to be deleted.",
+          "dataType": "@key",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "cascade",
+          "label": "",
+          "description": "Delete all referrers on cascade",
+          "dataType": "boolean",
+          "required": false,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "readAsset",
+      "label": "Read Asset",
+      "description": "",
+      "method": "GET",
+      "metaTx": true,
+      "readOnly": true,
+      "callers": null,
+      "args": [
+        {
+          "tag": "key",
+          "label": "",
+          "description": "Key of the asset to be read.",
+          "dataType": "@key",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "resolve",
+          "label": "",
+          "description": "Resolve references recursively.",
+          "dataType": "boolean",
+          "required": false,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "readAssetHistory",
+      "label": "Read Asset History",
+      "description": "",
+      "method": "GET",
+      "metaTx": true,
+      "readOnly": true,
+      "callers": null,
+      "args": [
+        {
+          "tag": "key",
+          "label": "",
+          "description": "Key of the asset to be read.",
+          "dataType": "@key",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "timeTarget",
+          "label": "",
+          "description": "Optional parameter to retrieve specific version of the asset.",
+          "dataType": "datetime",
+          "required": false,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "search",
+      "label": "Search World State",
+      "description": "",
+      "method": "GET",
+      "metaTx": true,
+      "readOnly": true,
+      "callers": null,
+      "args": [
+        {
+          "tag": "query",
+          "label": "",
+          "description": "Query string according to CouchDB specification: https://docs.couchdb.org/en/stable/api/database/find.html.",
+          "dataType": "@query",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "collection",
+          "label": "",
+          "description": "Name of the private collection to be searched.",
+          "dataType": "string",
+          "required": false,
+          "private": false
+        },
+        {
+          "tag": "resolve",
+          "label": "",
+          "description": "Resolve references recursively.",
+          "dataType": "boolean",
+          "required": false,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "createExam",
+      "label": "Criar Exame",
+      "description": "Cria um registro de Exame",
+      "method": "POST",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "numProtocolo",
+          "label": "Número do Protocolo",
+          "description": "Número do Protocolo do Exame",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "initialDoctorHash",
+          "label": "Hash do Médico Inicial",
+          "description": "Referência ao Médico Inicial",
+          "dataType": "sha256",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "patientHash",
+          "label": "Hash do Paciente",
+          "description": "Referência ao Paciente",
+          "dataType": "sha256",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "timestamp",
+          "label": "Data e Hora do Exame",
+          "description": "Timestamp do Exame",
+          "dataType": "datetime",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "name",
+          "label": "Nome do Exame",
+          "description": "Nome do Exame",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "urlPupilometerVideo",
+          "label": "URL do Vídeo do Pupilômetro",
+          "description": "URL do Vídeo do Pupilômetro",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "filePupilometerVideoMetadataHash",
+          "label": "Hash dos Metadados do Vídeo do Pupilômetro",
+          "description": "Hash dos Metadados do Vídeo do Pupilômetro",
+          "dataType": "sha256",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "urlAiCurves",
+          "label": "URL das Curvas de IA",
+          "description": "URL das Curvas de IA",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "fileAiCurvesMetadataHash",
+          "label": "Hash dos Metadados das Curvas de IA",
+          "description": "Hash dos Metadados das Curvas de IA",
+          "dataType": "sha256",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "urlImageChart",
+          "label": "URL do Gráfico de Imagem",
+          "description": "URL do Gráfico de Imagem",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "fileImageChartMetadataHash",
+          "label": "Hash dos Metadados do Gráfico de Imagem",
+          "description": "Hash dos Metadados do Gráfico de Imagem",
+          "dataType": "sha256",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "diagnosisHash",
+          "label": "Hash do Diagnóstico",
+          "description": "Hash do Diagnóstico",
+          "dataType": "sha256",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "treatmentHash",
+          "label": "Hash do Tratamento",
+          "description": "Hash do Tratamento",
+          "dataType": "sha256",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "isGlaucomaIA",
+          "label": "Glaucoma IA",
+          "description": "Indica se a IA detectou glaucoma",
+          "dataType": "boolean",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "isReady",
+          "label": "Está pronto?",
+          "description": "Indica se o exame está pronto",
+          "dataType": "boolean",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "updateUserRoomTransaction",
+      "label": "Atualizar Sala do Usuário",
+      "description": "Atualiza a sala do usuário para a próxima na ordem definida",
+      "method": "POST",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "userHash",
+          "label": "Hash do Usuário",
+          "description": "Hash do usuário",
+          "dataType": "sha256",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "nextRoom",
+          "label": "Próxima Sala",
+          "description": "Nome da próxima sala que o usuário deve ir",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "status",
+          "label": "Status",
+          "description": "Status do usuário na sala",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "updateChatbotResultAction",
+      "label": "Atualizar Resultado da Ação no Chatbot",
+      "description": "Atualiza o campo resultAction no ativo Chatbot",
+      "method": "POST",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "numProtocolo",
+          "label": "Número do Protocolo",
+          "description": "Número do Protocolo",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "resultAction",
+          "label": "Resultado da Ação",
+          "description": "Resultado da Ação",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "createDiagnosis",
+      "label": "Criar Diagnóstico",
+      "description": "Cria um registro de Diagnóstico",
+      "method": "POST",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "numProtocolo",
+          "label": "Número do Protocolo",
+          "description": "Número do Protocolo do Exame",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "timestamp",
+          "label": "Data e Hora do Diagnóstico",
+          "description": "Timestamp do Diagnóstico",
+          "dataType": "datetime",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "name",
+          "label": "Nome do Diagnóstico",
+          "description": "Nome do Diagnóstico",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "obs",
+          "label": "Observações",
+          "description": "Observações do Diagnóstico",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "initialDoctorHash",
+          "label": "Hash do Médico Inicial",
+          "description": "Referência ao Médico Inicial",
+          "dataType": "sha256",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "isReady",
+          "label": "Está pronto?",
+          "description": "Indica se o diagnóstico está pronto",
+          "dataType": "boolean",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "urlFileDiagnosisPdf",
+          "label": "URL do arquivo PDF de Diagnóstico",
+          "description": "URL do arquivo PDF de Diagnóstico",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "fileDiagnosisPdfMetadataHash",
+          "label": "Hash dos Metadados do arquivo PDF de Diagnóstico",
+          "description": "Hash dos Metadados do arquivo PDF de Diagnóstico",
+          "dataType": "sha256",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "registerChatbot",
+      "label": "Registrar Chatbot",
+      "description": "Registra um novo Chatbot",
+      "method": "POST",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "numProtocolo",
+          "label": "Número do Protocolo",
+          "description": "Número do Protocolo do Chatbot",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "timestamp",
+          "label": "Timestamp",
+          "description": "Data e Hora do Registro",
+          "dataType": "datetime",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "encryptedApplicationPassword",
+          "label": "Senha criptografada de acesso à Aplicação",
+          "description": "Senha criptografada de acesso à Aplicação",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "checkFileMetadataHash",
+      "label": "Verificar Hash de Metadados de Arquivo",
+      "description": "Verifica se um arquivo com determinado hash de metadados já existe.",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "fileMetadataHash",
+          "label": "Hash de Metadados do Arquivo",
+          "description": "Hash dos metadados do arquivo a ser verificado",
+          "dataType": "sha256",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getExamByNumProtocolo",
+      "label": "Consultar Exame pelo Número de Protocolo",
+      "description": "Consulta um exame usando o número de protocolo como chave.",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "numProtocolo",
+          "label": "Número do Protocolo",
+          "description": "Número do Protocolo do Exame a ser consultado",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getUserByPin",
+      "label": "Buscar Usuário pelo PIN",
+      "description": "Busca um usuário (patient, doctor ou user) pelo PIN criptografado.",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "encryptedPIN",
+          "label": "PIN Criptografado",
+          "description": "O PIN criptografado que será usado na busca",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getConsentByPatientAndDoctor",
+      "label": "Buscar Consentimento por Paciente e Médico",
+      "description": "Busca o consentimento concedido pelo paciente para o médico",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "grantorPatient",
+          "label": "Paciente Concedente",
+          "description": "Chave do paciente que concedeu o consentimento",
+          "dataType": "->patient",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "requestingDoctor",
+          "label": "Médico Solicitante",
+          "description": "Chave do médico que solicitou o consentimento",
+          "dataType": "->doctor",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getSetupByPin",
+      "label": "Obter Setup de Sessão pelo PIN",
+      "description": "Busca os detalhes da sessão, metaverso e salas associadas a um PIN criptografado.",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "encryptedPIN",
+          "label": "PIN Criptografado",
+          "description": "O PIN criptografado que será usado na busca",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getMetaverseBySession",
+      "label": "Buscar Metaverse pela Sessão",
+      "description": "Busca os dados do Metaverse utilizando a chave da Sessão.",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "sessionKey",
+          "label": "Chave da Sessão",
+          "description": "A chave da sessão para buscar o Metaverse relacionado.",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getConsentByPatient",
+      "label": "Buscar Consentimento pelo Paciente",
+      "description": "Busca o consentimento ativo de um paciente usando o email do paciente.",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "patientEmail",
+          "label": "Email do Paciente",
+          "description": "O email do paciente para buscar o consentimento",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getPatientByDoctor",
+      "label": "Buscar Paciente por Médico",
+      "description": "Busca o paciente associado a um médico (inicial ou especialista) e retorna a sessão mais recente.",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "doctorKey",
+          "label": "Chave do Médico",
+          "description": "A chave do médico para buscar as sessões associadas",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getRoomsByMetaverse",
+      "label": "Buscar Salas por Metaverse",
+      "description": "Busca todas as salas associadas ao metaverso usando a chave do Metaverse.",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "metaverseKey",
+          "label": "Chave do Metaverse",
+          "description": "A chave do metaverse para buscar as salas relacionadas.",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getUserRoomsBySession",
+      "label": "Buscar Salas de Usuários por Sessão",
+      "description": "Busca todas as informações de userRooms associadas a uma sessão específica (inclui paciente e médico).",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "sessionKey",
+          "label": "Chave da Sessão",
+          "description": "A chave da sessão para buscar as salas associadas.",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getExamDetailsByEncryptedPatientPIN",
+      "label": "Obter Detalhes do Exame pelo PIN Criptografado do Paciente",
+      "description": "Retorna os detalhes de um exame usando o PIN criptografado do paciente",
+      "method": "POST",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "encryptedPatientPIN",
+          "label": "PIN Criptografado do Paciente",
+          "description": "PIN criptografado do paciente para verificação",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getSessionByPatient",
+      "label": "Buscar Última Sessão por Paciente",
+      "description": "Busca a última sessão ativa de um paciente, com base no timestamp mais recente.",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "patientKey",
+          "label": "Chave do Paciente",
+          "description": "A chave do paciente para buscar a sessão.",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getLatestExamAndDiagnosisByEncryptedPatientPIN",
+      "label": "Obter Último Exame e Diagnóstico pelo PIN Criptografado do Paciente",
+      "description": "Retorna o último exame e diagnóstico usando o PIN criptografado do paciente",
+      "method": "POST",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "encryptedPatientPIN",
+          "label": "PIN Criptografado do Paciente",
+          "description": "PIN criptografado do paciente para verificação",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "transferConsentTransaction",
+      "label": "Transferir Consentimento",
+      "description": "Transfere o consentimento de um paciente para um novo médico, atualiza a sessão e cria o asset de userRoom para o novo médico",
+      "method": "POST",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "patientKey",
+          "label": "Chave do Paciente",
+          "description": "Chave única do paciente (utiliza @key)",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "newDoctorKey",
+          "label": "Chave do Novo Médico",
+          "description": "Chave única do novo médico (utiliza @key)",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getSessionsByMetaverse",
+      "label": "Buscar Sessões por Metaverse",
+      "description": "Busca todas as sessões associadas a um Metaverse pela chave do Metaverse.",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "metaverseKey",
+          "label": "Chave do Metaverse",
+          "description": "A chave do Metaverse para buscar as sessões relacionadas.",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "findUsersInRoom",
+      "label": "Buscar Usuários por Sala",
+      "description": "Busca todos os usuários que estão associados a uma sala específica pela chave da sala.",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "roomKey",
+          "label": "Chave da Sala",
+          "description": "A chave da sala para buscar os usuários relacionados.",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "findMetaverseByRoom",
+      "label": "Buscar Metaverso por Sala",
+      "description": "Busca o metaverso associado a uma sala específica pela chave da sala.",
+      "method": "GET",
+      "metaTx": false,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "roomKey",
+          "label": "Chave da Sala",
+          "description": "A chave da sala para buscar o metaverso relacionado.",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getTx",
+      "label": "Get Tx",
+      "description": "",
+      "method": "GET",
+      "metaTx": true,
+      "readOnly": true,
+      "callers": null,
+      "args": [
+        {
+          "tag": "txName",
+          "label": "",
+          "description": "The name of the transaction of which you want to fetch the definition. Leave empty to fetch a list of possible transactions.",
+          "dataType": "string",
+          "required": false,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getHeader",
+      "label": "Get Header",
+      "description": "",
+      "method": "GET",
+      "metaTx": true,
+      "readOnly": true,
+      "callers": null,
+      "args": []
+    },
+    {
+      "tag": "getSchema",
+      "label": "Get Schema",
+      "description": "",
+      "method": "GET",
+      "metaTx": true,
+      "readOnly": true,
+      "callers": null,
+      "args": [
+        {
+          "tag": "assetType",
+          "label": "",
+          "description": "The name of the asset type of which you want to fetch the definition. Leave empty to fetch a list of possible types.",
+          "dataType": "string",
+          "required": false,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "getDataTypes",
+      "label": "Get DataTypes",
+      "description": "GetDataTypes returns the primary data type map",
+      "method": "GET",
+      "metaTx": true,
+      "readOnly": true,
+      "callers": null,
+      "args": []
+    },
+    {
+      "tag": "getEvents",
+      "label": "Get Events",
+      "description": "GetEvents returns the events map",
+      "method": "GET",
+      "metaTx": true,
+      "readOnly": true,
+      "callers": null,
+      "args": []
+    },
+    {
+      "tag": "executeEvent",
+      "label": "Execute Event",
+      "description": "ExecuteEvent executes an event of type 'EventCustom'",
+      "method": "POST",
+      "metaTx": true,
+      "readOnly": false,
+      "callers": null,
+      "args": [
+        {
+          "tag": "eventTag",
+          "label": "",
+          "description": "Event Tag",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "payload",
+          "label": "",
+          "description": "Paylod in Base64 encoding",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "runEvent",
+      "label": "Run Event",
+      "description": "RunEvent runs an event of type 'EventCustom' as readOnly",
+      "method": "GET",
+      "metaTx": true,
+      "readOnly": true,
+      "callers": null,
+      "args": [
+        {
+          "tag": "eventTag",
+          "label": "",
+          "description": "Event Tag",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "payload",
+          "label": "",
+          "description": "Paylod in Base64 encoding",
+          "dataType": "string",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "readAsset",
+      "label": "Read Asset",
+      "description": "",
+      "method": "GET",
+      "metaTx": true,
+      "readOnly": true,
+      "callers": null,
+      "args": [
+        {
+          "tag": "key",
+          "label": "",
+          "description": "Key of the asset to be read.",
+          "dataType": "@key",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "resolve",
+          "label": "",
+          "description": "Resolve references recursively.",
+          "dataType": "boolean",
+          "required": false,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "readAssetHistory",
+      "label": "Read Asset History",
+      "description": "",
+      "method": "GET",
+      "metaTx": true,
+      "readOnly": true,
+      "callers": null,
+      "args": [
+        {
+          "tag": "key",
+          "label": "",
+          "description": "Key of the asset to be read.",
+          "dataType": "@key",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "timeTarget",
+          "label": "",
+          "description": "Optional parameter to retrieve specific version of the asset.",
+          "dataType": "datetime",
+          "required": false,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "search",
+      "label": "Search World State",
+      "description": "",
+      "method": "GET",
+      "metaTx": true,
+      "readOnly": true,
+      "callers": null,
+      "args": [
+        {
+          "tag": "query",
+          "label": "",
+          "description": "Query string according to CouchDB specification: https://docs.couchdb.org/en/stable/api/database/find.html.",
+          "dataType": "@query",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "collection",
+          "label": "",
+          "description": "Name of the private collection to be searched.",
+          "dataType": "string",
+          "required": false,
+          "private": false
+        },
+        {
+          "tag": "resolve",
+          "label": "",
+          "description": "Resolve references recursively.",
+          "dataType": "boolean",
+          "required": false,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "createAssetType",
+      "label": "Create Asset Type",
+      "description": "",
+      "method": "POST",
+      "metaTx": true,
+      "readOnly": false,
+      "callers": [
+        "org1MSP",
+        "orgMSP"
+      ],
+      "args": [
+        {
+          "tag": "assetTypes",
+          "label": "",
+          "description": "Asset Types to be created.",
+          "dataType": "[]@object",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "updateAssetType",
+      "label": "Update Asset Type",
+      "description": "",
+      "method": "POST",
+      "metaTx": true,
+      "readOnly": false,
+      "callers": [
+        "org1MSP",
+        "orgMSP"
+      ],
+      "args": [
+        {
+          "tag": "assetTypes",
+          "label": "",
+          "description": "Asset Types to be updated.",
+          "dataType": "[]@object",
+          "required": true,
+          "private": false
+        },
+        {
+          "tag": "skipAssetEmptyValidation",
+          "label": "",
+          "description": "Do not validate existing assets on the update. Its use should be avoided.",
+          "dataType": "boolean",
+          "required": false,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "deleteAssetType",
+      "label": "Delete Asset Type",
+      "description": "",
+      "method": "POST",
+      "metaTx": true,
+      "readOnly": false,
+      "callers": [
+        "org1MSP",
+        "orgMSP"
+      ],
+      "args": [
+        {
+          "tag": "assetTypes",
+          "label": "",
+          "description": "Asset Types to be deleted.",
+          "dataType": "[]@object",
+          "required": true,
+          "private": false
+        }
+      ]
+    },
+    {
+      "tag": "loadAssetTypeList",
+      "label": "Load Asset Type List from blockchain",
+      "description": "",
+      "method": "POST",
+      "metaTx": true,
+      "readOnly": false,
+      "callers": null,
+      "args": []
+    }
+  ],
+  "events": [
+    {
+      "tag": "createLibraryLog",
+      "label": "Create Library Log",
+      "description": "Log of a library creation",
+      "baseLog": "New library created",
+      "type": 0,
+      "receivers": [
+        "$org2MSP",
+        "$orgMSP"
+      ],
+      "transaction": "",
+      "channel": "",
+      "chaincode": "",
+      "readOnly": false
+    }
+  ]
+}

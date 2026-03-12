@@ -1,0 +1,95 @@
+@startuml OrchestratorFabricUFG
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam arrowColor #0A4
+skinparam componentBorderColor #0A4
+skinparam componentFontName "Arial"
+
+title UFG Fabric Orchestrator - Architectural View
+
+actor Operator as operator
+actor "External Applications" as apps
+
+package "Interfaces & Governance" {
+  component "Dashboard\n(Cello UI)" as dashboard
+  component "API Engine\nREST/GraphQL" as api
+  component "User Management\n(Keycloak/JWT)" as idp
+}
+
+package "Dynamic Orchestration" {
+  component "Scheduler & Hooks\n(commit listeners,\nwebhooks, cron jobs)" as hooks
+  component "Lifecycle Runner\n(docker compose up,\ncluster actions)" as runner
+  component "Fabric Artifacts\n(cello-storage)" as storage
+  component "Gateway Storage\n(wallet, identities.json,\nconnection-<org>.json)" as gwstore
+}
+
+package "Chaincode Exposure" {
+  component "Chaincode Gateway\n(Node.js ccapi-compatible)" as gateway
+  database "Wallets and Metadata\nidentities per channel" as wallet
+}
+
+package "Active Fabric Network" {
+  component "Agentes Docker/K8s\n(cello-docker-agent)" as agents
+  component "Cluster Orderer\n(etcdraft orderer0/1/2)" as orderers
+  component "Dynamic Peers\n(orgs, chaincodes)" as peers
+  component "State DB\n(CouchDB)" as couch
+  component "Fabric CA\n(MSP issuance)" as ca
+}
+
+component "Chaincode cc-tools\n(Golang assets + tx defs)" as cctools
+component "Observability\n(Prometheus/Grafana) [future]" as observability
+
+operator --> dashboard : visual management\n(operation design)
+dashboard --> api : administrative actions
+operator --> api : automation via API/CLI
+api --> hooks : lifecycle events\ninstall/approve/commit
+hooks --> storage : updates packages and\nconnection profiles
+hooks --> gwstore : rewrites identities.json\n(including org channels)
+hooks --> runner : triggers compose up\nfor chaincode-gateway
+runner --> gateway : recreates service with\nupdated configuration
+gateway --> wallet : dynamically reads the\nidentity for each channel
+gateway --> peers : submit/evaluate\nccapi transactions
+peers --> couch : state DB
+peers --> orderers : RAFT blocks
+peers --> ca : MSP validation
+peers --> cctools : cc-tools instance\nexecuted as chaincode
+apps --> gateway : REST invoke/query
+apps ..> dashboard : optional upload\n(chaincode packages)
+
+api --> storage : publishes artifacts\n(chaincodes, MSP, policies)
+agents --> peers : provisions nodes\n(containers/pods)
+agents --> orderers
+agents --> ca
+
+gateway ..> observability : metrics/logs (planned)
+hooks ..> observability : lifecycle events (planned)
+
+note right of runner
+  Post-commit pipeline
+  1. Hook detects a new package/commit
+  2. Updates identities.json with channels
+  3. Generates connection-<org>.json
+  4. Runs docker compose up for the gateway
+  5. REST becomes available immediately
+end note
+
+note left of peers
+  Peers host cc-tools chaincodes
+  (CreateAsset, Search, and others) and
+  expose events to applications.
+end note
+
+note bottom of agents
+  Agents can run on distinct hosts
+  (Docker or Kubernetes) connected to
+  the external `cello-net` network.
+end note
+
+note bottom of gateway
+  Organization selection is automatic
+  from the requested channel. `?org=`
+  remains available as an override for
+  multi-identity scenarios.
+end note
+
+@enduml

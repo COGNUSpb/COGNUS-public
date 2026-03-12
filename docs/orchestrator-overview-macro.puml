@@ -1,0 +1,60 @@
+@startuml OrchestratorFabricUFGMacro
+skinparam backgroundColor #FFFFFF
+skinparam componentStyle rectangle
+skinparam component {
+  FontName "Arial"
+  BorderColor #0A4
+  FontColor #0A4
+  BackgroundColor #EEFFF6
+}
+skinparam rectangle {
+  RoundCorner 12
+}
+skinparam shadowing false
+skinparam ArrowColor #0A4
+
+title UFG Fabric Orchestrator - Macro View
+
+actor "Operators" as operator
+actor "External Applications" as apps
+
+rectangle "UFG Fabric Orchestrator" as orchestrator {
+  rectangle "Dashboard &\nAPI Engine" as frontend
+  rectangle "Lifecycle &\nDynamic Hooks" as lifecycle
+  rectangle "REST Gateway\n(ccapi compatible)" as restgw
+}
+
+cloud "Fabric Network\n(peers, orderers,\ncc-tools chaincodes)" as fabric
+folder "Infrastructure\nDocker / Kubernetes\n(cello-docker-agent)" as infra
+database "Shared Storage\ncello-storage + identities" as storage
+rectangle "Observability\n(Prometheus/Grafana)\n*planned*" as observability
+
+operator --> frontend : provision\n& govern
+apps --> restgw : REST usage
+
+frontend --> lifecycle : lifecycle\nactions
+lifecycle --> infra : orchestrates agents
+infra --> fabric : deploys\npeers/orderers/cc
+lifecycle --> storage : writes\nartifacts and identities
+restgw --> storage : reads identities/\nwallets by channel
+restgw --> fabric : invokes chaincodes
+
+frontend ..> observability : dashboards\n(planned)
+lifecycle ..> observability : metrics/hooks\n(planned)
+restgw ..> observability : API usage\n(planned)
+
+note right of restgw
+  Automatic organization selection
+  based on the requested channel
+  (override via `?org=` when required).
+end note
+
+note bottom of lifecycle
+  Post-commit hooks update\nidentities.json, generate\nconnection-<org>.json, and\nrestart the gateway.
+end note
+
+note bottom of fabric
+  cc-tools chaincodes expose\nbusiness transactions\n(CreateAsset, Search, and others).
+end note
+
+@enduml

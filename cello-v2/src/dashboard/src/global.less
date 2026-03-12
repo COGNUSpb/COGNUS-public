@@ -1,0 +1,123 @@
+@import '~antd/lib/style/themes/default.less';
+
+:root {
+  --brand-night: #1b2559;
+  --brand-link: #2f6bff;
+  --brand-network: #2cb6a6;
+  --brand-star: #7c3aed;
+  --neutral-950: #0b1220;
+  --neutral-900: #111827;
+  --neutral-700: #374151;
+  --neutral-500: #6b7280;
+  --neutral-200: #e5e7eb;
+  --neutral-100: #f3f4f6;
+  --neutral-0: #fff;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-soft: 0 6px 18px rgba(11, 18, 32, 0.12);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.colorWeak {
+  filter: invert(80%);
+}
+
+.ant-layout {
+  min-height: 100vh;
+}
+
+.ant-alert-message {
+  color: @alert-message-color;
+}
+
+canvas {
+  display: block;
+}
+
+body {
+  color: var(--neutral-900);
+  font-family: Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--neutral-100);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--brand-link);
+}
+
+:global {
+  .ant-layout-content {
+    color: var(--neutral-900);
+  }
+
+  .ant-btn-primary {
+    background: linear-gradient(90deg, var(--brand-link) 0%, var(--brand-network) 100%);
+    border: none;
+  }
+
+  .ant-btn-primary:hover,
+  .ant-btn-primary:focus {
+    background: linear-gradient(90deg, #1f57d9 0%, #259f92 100%);
+  }
+
+  .ant-btn-primary:active {
+    background: linear-gradient(90deg, #193fa9 0%, #1c7f76 100%);
+  }
+
+  .ant-input:focus,
+  .ant-input-focused,
+  .ant-select-focused .ant-select-selector {
+    border-color: var(--brand-link) !important;
+    box-shadow: 0 0 0 2px fade(#2f6bff, 14%);
+  }
+
+  .ant-card {
+    border: 1px solid var(--neutral-200);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .ant-table-thead > tr > th {
+    color: var(--neutral-900);
+    background: var(--neutral-100);
+  }
+
+  .ant-typography code {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+.globalSpin {
+  width: 100%;
+  margin: 40px 0 !important;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+@media (max-width: @screen-xs) {
+  .ant-table {
+    width: 100%;
+    overflow-x: auto;
+    &-thead > tr,
+    &-tbody > tr {
+      > th,
+      > td {
+        white-space: pre;
+        > span {
+          display: block;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,472 @@
+@import '~antd/lib/style/themes/default.less';
+@import '../../styles/cognus-brand.less';
+
+@nav-header-height: 186px;
+
+.logo {
+  position: relative;
+  height: @nav-header-height;
+  padding: 10px 14px;
+  overflow: hidden;
+  line-height: normal;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  transition: all 0.3s;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    animation: sider-logo-enter 0.35s ease-out;
+  }
+
+  .logoMain {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .logoMark {
+    flex-shrink: 0;
+    width: 62px;
+    height: 62px;
+    border-radius: 14px;
+  }
+
+  .brandBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-width: 0;
+    margin-top: -4px;
+  }
+
+  img {
+    display: inline-block;
+    height: 62px;
+    vertical-align: middle;
+  }
+
+  .brandTitle {
+    display: inline-block;
+
+    // ✅ garante que o background use só a largura do texto
+    align-self: flex-start;
+    width: fit-content;
+    color: transparent;
+    font-weight: 700;
+    font-size: 28px;
+    font-family: Inter, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    // ✅ Transição SUAVE (como a barra de referência)
+    // “meio do G” ~42% (centro da transição azul→verde)
+    // “meio do N” ~60% (centro da transição verde→roxo)
+    // Obs.: mix() é do LESS e ajuda a controlar a suavidade com mais “stops”.
+    background: linear-gradient(
+      90deg,
+      @cognus-blue 0%,
+      @cognus-blue 36%,
+      /* azul -> verde (centro ~42%) */ mix(@cognus-blue, @cognus-green, 70%) 39%,
+      mix(@cognus-blue, @cognus-green, 45%) 42%,
+      mix(@cognus-blue, @cognus-green, 20%) 45%,
+      @cognus-green 48%,
+      /* verde “predominante” no miolo */ @cognus-green 55%,
+      /* verde -> roxo (centro ~60%) */ mix(@cognus-green, @cognus-purple, 80%) 57%,
+      mix(@cognus-green, @cognus-purple, 55%) 60%,
+      mix(@cognus-green, @cognus-purple, 25%) 63%,
+      @cognus-purple 66%,
+      @cognus-purple 100%
+    );
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 100% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .brandSubtitle {
+    display: block;
+    max-width: 190px;
+    margin-top: 1px;
+    color: #6b7280;
+    font-size: 11px;
+    line-height: 1.12;
+    letter-spacing: 0.03em;
+    white-space: normal;
+  }
+
+  .fabricBrand {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+    align-self: flex-start;
+    justify-content: flex-start;
+    width: auto;
+    max-width: 170px;
+    margin-top: 7px;
+    padding: 5px 7px;
+    background: #f8f9fd;
+    border: 1px solid #d8deef;
+    border-radius: 8px;
+  }
+
+  .fabricBrandLabel {
+    color: #5f6d82;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    text-align: left;
+  }
+
+  .fabricBrandLogo {
+    display: block;
+    width: 116px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .compactBrandBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    margin-top: 4px;
+  }
+
+  .compactBrandTitle {
+    align-self: center;
+    width: fit-content;
+    color: transparent;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: Inter, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: linear-gradient(
+      90deg,
+      @cognus-blue 0%,
+      @cognus-blue 36%,
+      mix(@cognus-blue, @cognus-green, 70%) 39%,
+      mix(@cognus-blue, @cognus-green, 45%) 42%,
+      mix(@cognus-blue, @cognus-green, 20%) 45%,
+      @cognus-green 48%,
+      @cognus-green 55%,
+      mix(@cognus-green, @cognus-purple, 80%) 57%,
+      mix(@cognus-green, @cognus-purple, 55%) 60%,
+      mix(@cognus-green, @cognus-purple, 25%) 63%,
+      @cognus-purple 66%,
+      @cognus-purple 100%
+    );
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 100% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .compactFabricSymbolWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: #f8f9fd;
+    border: 1px solid #d8deef;
+    border-radius: 8px;
+  }
+
+  .compactFabricSymbol {
+    display: block;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+
+  &::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: @cognus-accent-gradient;
+    content: '';
+  }
+}
+
+@keyframes sider-logo-enter {
+  from {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.logoCompact {
+  padding: 6px 0 2px;
+
+  .logoMain {
+    justify-content: center;
+    width: auto;
+  }
+
+  a {
+    gap: 2px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.logoMarkCompact {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 14px !important;
+}
+
+.sider {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  background-color: #fff;
+  border-right: 1px solid #e5e7eb;
+  box-shadow: 2px 0 8px rgba(11, 18, 32, 0.08);
+
+  &.fixSiderBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
+
+    :global {
+      .ant-menu-root {
+        height: ~'calc(100vh - @{nav-header-height})';
+        overflow-y: auto;
+      }
+      .ant-menu-inline {
+        border-right: 0;
+        .ant-menu-item,
+        .ant-menu-submenu-title {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &.light {
+    background-color: white;
+    box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
+
+    .logo {
+      background: white;
+      box-shadow: 1px 1px 0 0 @border-color-split;
+    }
+
+    :global(.ant-menu-light) {
+      border-right-color: transparent;
+    }
+  }
+}
+
+.icon {
+  width: 14px;
+  vertical-align: baseline;
+}
+
+.baseMenu {
+  background-color: #fff;
+}
+
+:global {
+  .top-nav-menu li.ant-menu-item {
+    height: @nav-header-height;
+    line-height: @nav-header-height;
+  }
+
+  .drawer .drawer-content {
+    background: @component-background;
+  }
+
+  .ant-menu-inline-collapsed {
+    & > .ant-menu-item .sider-menu-item-img + span,
+    &
+      > .ant-menu-item-group
+      > .ant-menu-item-group-list
+      > .ant-menu-item
+      .sider-menu-item-img
+      + span,
+    & > .ant-menu-submenu > .ant-menu-submenu-title .sider-menu-item-img + span {
+      display: inline-block;
+      max-width: 0;
+      opacity: 0;
+    }
+  }
+
+  .ant-menu-inline {
+    .ant-menu-item-divider.sider-menu-divider {
+      margin: 12px 18px 8px;
+      border-top-color: #d3dbe9;
+    }
+
+    .ant-menu-item,
+    .ant-menu-submenu-title {
+      position: relative;
+      width: calc(100% - 16px);
+      height: auto;
+      min-height: 44px;
+      margin: 4px 8px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      overflow: hidden;
+      line-height: 1.35 !important;
+      border-radius: 12px;
+      transition: transform 0.18s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+
+      &::before {
+        position: absolute;
+        top: 9px;
+        bottom: 9px;
+        left: 0;
+        width: 0;
+        background: linear-gradient(180deg, #2f6bff 0%, #2cb6a6 100%);
+        border-radius: 0 10px 10px 0;
+        transition: width 0.2s ease;
+        content: '';
+      }
+    }
+
+    .ant-menu-item > a,
+    .ant-menu-submenu-title > span {
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+      line-height: 1.35;
+      white-space: normal;
+    }
+
+    .ant-menu-item .anticon + span,
+    .ant-menu-submenu-title .anticon + span {
+      display: inline-block;
+      max-width: 210px;
+      margin-top: 0;
+      overflow: visible;
+      color: #1f2937;
+      white-space: normal;
+      text-overflow: clip;
+      word-break: break-word;
+      transition: color 0.2s ease;
+    }
+
+    .ant-menu-submenu-arrow {
+      margin-top: 4px;
+    }
+
+    .ant-menu-item:hover,
+    .ant-menu-submenu-title:hover {
+      color: #1b2559 !important;
+      background: linear-gradient(90deg, fade(#2cb6a6, 14%) 0%, fade(#2f6bff, 7%) 100%);
+      box-shadow: 0 6px 14px rgba(47, 107, 255, 0.12);
+      transform: translateX(2px);
+
+      &::before {
+        width: 4px;
+      }
+    }
+
+    .ant-menu-submenu-open > .ant-menu-submenu-title {
+      background: linear-gradient(90deg, fade(#7c3aed, 10%) 0%, fade(#2f6bff, 10%) 100%);
+      box-shadow: inset 0 0 0 1px fade(#7c3aed, 18%);
+
+      &::before {
+        width: 4px;
+      }
+    }
+
+    .ant-menu-item-selected {
+      color: #1b2559 !important;
+      background: linear-gradient(90deg, fade(#2f6bff, 16%) 0%, fade(#7c3aed, 12%) 100%) !important;
+      border-right: 0;
+      box-shadow: inset 0 0 0 1px fade(#2f6bff, 18%), 0 8px 16px rgba(47, 107, 255, 0.15);
+
+      &::before {
+        width: 5px;
+      }
+    }
+
+    .ant-menu-sub.ant-menu-inline {
+      padding-left: 2px;
+      background: transparent;
+
+      .ant-menu-item,
+      .ant-menu-submenu-title {
+        width: calc(100% - 28px);
+        min-height: 40px;
+        margin: 3px 8px 3px 20px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        background: linear-gradient(90deg, fade(#2f6bff, 8%) 0%, fade(#2cb6a6, 6%) 100%);
+        border: 1px solid #dfe6f8;
+        border-radius: 10px;
+      }
+
+      .ant-menu-item .anticon + span,
+      .ant-menu-submenu-title .anticon + span {
+        max-width: 194px;
+        color: #2a4f9f;
+        font-weight: 500;
+        font-size: 15px;
+      }
+
+      .ant-menu-item-selected {
+        color: #1f3f86 !important;
+        background: linear-gradient(
+          90deg,
+          fade(#2f6bff, 20%) 0%,
+          fade(#2cb6a6, 14%) 100%
+        ) !important;
+        box-shadow: inset 0 0 0 1px fade(#2f6bff, 24%), 0 6px 12px rgba(47, 107, 255, 0.12);
+      }
+    }
+  }
+
+  .ant-drawer-left {
+    .ant-drawer-body {
+      padding: 0;
+    }
+  }
+
+  .ant-menu-dark .ant-menu-inline.ant-menu-sub {
+    background: @tooltip-bg;
+    -webkit-box-shadow: 0 2px 8px rgba(45, 63, 73, 0.45) inset;
+    box-shadow: 0 2px 8px rgba(45, 63, 73, 0.45) inset;
+  }
+
+  .ant-menu-dark.ant-menu-horizontal > .ant-menu-item,
+  .ant-menu-dark.ant-menu-horizontal > .ant-menu-submenu {
+    border-color: @tooltip-bg;
+  }
+
+  .ant-layout-sider-collapsed .logo {
+    height: 136px;
+    padding: 6px 0 2px;
+
+    a {
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+  }
+}

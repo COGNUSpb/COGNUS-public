@@ -1,0 +1,42 @@
+services:
+  chaincode-gateway:
+    build: .
+    image: cognus/chaincode-gateway:latest
+    container_name: chaincode-gateway
+    restart: unless-stopped
+    ports:
+      - "8085:3000"
+    environment:
+      - PORT=3000
+      - DISCOVERY_AS_LOCALHOST=${DISCOVERY_AS_LOCALHOST:-false}
+      - IDENTITY_CONFIG=/workspace/data/identities.json
+    volumes:
+      - ./data:/workspace/data
+      - ./data:/app/chaincode-gateway/data
+      - ../cello-v2/cello-storage:/opt/cello:ro
+    command: ["node", "index.js"]
+    networks:
+      - cello-net
+  fabric-auto-operator:
+    build:
+      context: ../automation
+      dockerfile: Dockerfile
+    image: fabric-auto-operator:latest
+    container_name: fabric-auto-operator
+    restart: unless-stopped
+    environment:
+      - FABRIC_OPERATOR_POLL_INTERVAL=20
+      - HOST_DATA_DIR=/workspace/chaincode-gateway/data
+      - GATEWAY_DATA_ROOT=/workspace/data
+      - HOST_WALLET_DIR=/workspace/chaincode-gateway/.gateway-wallet
+    volumes:
+      - ../:/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - cello-net
+    depends_on:
+      - chaincode-gateway
+
+networks:
+  cello-net:
+    external: true

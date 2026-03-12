@@ -1,0 +1,164 @@
+# This compose file will deploy the services, and bootup a mongo server.
+
+# Copyright IBM Corp., All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+# Local `/opt/cello` will be used for the db storage.
+
+#  cello-nginx: proxy to access operator dashboard service, listen on 8080
+#  cello-operator-dashboard: dashboard service for operators
+#  cello-user-dashboard: user service of cello, listen on 8081
+#  engine: engine service of cello to provide RESTful APIs, listen on 80
+#  cello-mongo: mongo db
+
+version: '3.2'
+services:
+  nginx:
+    image: hyperledger/cello-nginx
+    hostname: cello-nginx
+    container_name: cello-nginx
+    restart: always
+    links:
+    - api-engine
+    ports:
+    - "${CONFIG_API_ENGINE_SERVICE_PORT}:80"
+    environment:
+    - UWSGI_SERVER_HOST=api-engine
+    - URL_PREFIX=${CONFIG_API_ENGINE_WEBROOT}
+    volumes:
+    - /opt/cello/api-engine/media:/var/www/media
+
+  postgres-server:
+    image: postgres:12.0
+    hostname: cello-postgres-server
+    container_name: cello-postgres-server
+    restart: always
+    environment:
+    - POSTGRES_DB=api-engine
+    - POSTGRES_USER=$POSTGRES_USER
+    - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+    volumes:
+    - /opt/cello/postgres:/var/lib/postgresql/data
+
+  redis:
+    image: redis:4.0.13
+    hostname: cello-redis
+    container_name: cello-redis
+    volumes:
+    - /opt/cello/redis:/data
+
+  api-engine:
+    image: hyperledger/cello-api-engine
+    hostname: cello-api-engine
+    container_name: cello-api-engine
+    restart: always
+    links:
+    - postgres-server
+    - redis
+    environment:
+    - WEBROOT=${API_ENGINE_WEBROOT}
+    - DEBUG=False
+    - DB_USER=${POSTGRES_USER}
+    - DB_PASSWORD=${POSTGRES_PASSWORD}
+    - DB_NAME=api-engine
+    - DB_HOST=postgres-server
+    - DB_PORT=5432
+    - ADMIN_TOKEN=$API_ENGINE_ADMIN_TOKEN
+    - BOOTSTRAP_ADMIN=$API_ENGINE_BOOTSTRAP_ADMIN
+    - CELERY_BROKER_URL=redis://redis
+    - ADMIN_USERNAME=$API_ENGINE_ADMIN_USERNAME
+    - ADMIN_PASSWORD=$API_ENGINE_ADMIN_PASSWORD
+    - ADMIN_EMAIL=$API_ENGINE_ADMIN_EMAIL
+    - API_VERSION=$API_VERSION
+    - RUNBOOK_ENABLED_NODE_TYPES=${RUNBOOK_ENABLED_NODE_TYPES:-peer,orderer,ca,couch,apigateway,netapi,chaincode}
+    - RUNBOOK_PROVISION_RUNTIME_STAGGER_SECONDS=${RUNBOOK_PROVISION_RUNTIME_STAGGER_SECONDS:-2}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_PEER=${RUNBOOK_RUNTIME_CPU_LIMIT_PEER:-0.75}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_ORDERER=${RUNBOOK_RUNTIME_CPU_LIMIT_ORDERER:-0.75}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_CA=${RUNBOOK_RUNTIME_CPU_LIMIT_CA:-0.50}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_COUCH=${RUNBOOK_RUNTIME_CPU_LIMIT_COUCH:-0.50}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_APIGATEWAY=${RUNBOOK_RUNTIME_CPU_LIMIT_APIGATEWAY:-0.50}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_NETAPI=${RUNBOOK_RUNTIME_CPU_LIMIT_NETAPI:-0.50}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_CHAINCODE=${RUNBOOK_RUNTIME_CPU_LIMIT_CHAINCODE:-0.25}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_PEER=${RUNBOOK_RUNTIME_MEMORY_LIMIT_PEER:-768m}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_ORDERER=${RUNBOOK_RUNTIME_MEMORY_LIMIT_ORDERER:-768m}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_CA=${RUNBOOK_RUNTIME_MEMORY_LIMIT_CA:-384m}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_COUCH=${RUNBOOK_RUNTIME_MEMORY_LIMIT_COUCH:-512m}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_APIGATEWAY=${RUNBOOK_RUNTIME_MEMORY_LIMIT_APIGATEWAY:-384m}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_NETAPI=${RUNBOOK_RUNTIME_MEMORY_LIMIT_NETAPI:-384m}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_CHAINCODE=${RUNBOOK_RUNTIME_MEMORY_LIMIT_CHAINCODE:-256m}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_PEER=${RUNBOOK_RUNTIME_PIDS_LIMIT_PEER:-512}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_ORDERER=${RUNBOOK_RUNTIME_PIDS_LIMIT_ORDERER:-512}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_CA=${RUNBOOK_RUNTIME_PIDS_LIMIT_CA:-256}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_COUCH=${RUNBOOK_RUNTIME_PIDS_LIMIT_COUCH:-256}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_APIGATEWAY=${RUNBOOK_RUNTIME_PIDS_LIMIT_APIGATEWAY:-256}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_NETAPI=${RUNBOOK_RUNTIME_PIDS_LIMIT_NETAPI:-256}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_CHAINCODE=${RUNBOOK_RUNTIME_PIDS_LIMIT_CHAINCODE:-128}
+    - RUNBOOK_RUNTIME_COMMAND_CHAINCODE=${RUNBOOK_RUNTIME_COMMAND_CHAINCODE:-tail -f /dev/null}
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /opt/cello/api-engine/media:/var/www/media
+    depends_on:
+    - postgres-server
+
+
+  api-engine-tasks:
+    image: hyperledger/cello-api-engine
+    hostname: cello-api-engine-tasks
+    container_name: cello-api-engine-tasks
+    restart: always
+    links:
+    - postgres-server
+    - redis
+    environment:
+    - WEBROOT=${API_ENGINE_WEBROOT}
+    - DEBUG=True
+    - DB_USER=${POSTGRES_USER}
+    - DB_PASSWORD=${POSTGRES_PASSWORD}
+    - DB_NAME=api-engine
+    - DB_HOST=postgres-server
+    - DB_PORT=5432
+    - ADMIN_TOKEN=$API_ENGINE_ADMIN_TOKEN
+    - CELERY_BROKER_URL=redis://redis
+    - API_VERSION=$API_VERSION
+    - RUNBOOK_ENABLED_NODE_TYPES=${RUNBOOK_ENABLED_NODE_TYPES:-peer,orderer,ca,couch,apigateway,netapi,chaincode}
+    - RUNBOOK_PROVISION_RUNTIME_STAGGER_SECONDS=${RUNBOOK_PROVISION_RUNTIME_STAGGER_SECONDS:-2}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_PEER=${RUNBOOK_RUNTIME_CPU_LIMIT_PEER:-0.75}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_ORDERER=${RUNBOOK_RUNTIME_CPU_LIMIT_ORDERER:-0.75}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_CA=${RUNBOOK_RUNTIME_CPU_LIMIT_CA:-0.50}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_COUCH=${RUNBOOK_RUNTIME_CPU_LIMIT_COUCH:-0.50}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_APIGATEWAY=${RUNBOOK_RUNTIME_CPU_LIMIT_APIGATEWAY:-0.50}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_NETAPI=${RUNBOOK_RUNTIME_CPU_LIMIT_NETAPI:-0.50}
+    - RUNBOOK_RUNTIME_CPU_LIMIT_CHAINCODE=${RUNBOOK_RUNTIME_CPU_LIMIT_CHAINCODE:-0.25}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_PEER=${RUNBOOK_RUNTIME_MEMORY_LIMIT_PEER:-768m}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_ORDERER=${RUNBOOK_RUNTIME_MEMORY_LIMIT_ORDERER:-768m}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_CA=${RUNBOOK_RUNTIME_MEMORY_LIMIT_CA:-384m}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_COUCH=${RUNBOOK_RUNTIME_MEMORY_LIMIT_COUCH:-512m}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_APIGATEWAY=${RUNBOOK_RUNTIME_MEMORY_LIMIT_APIGATEWAY:-384m}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_NETAPI=${RUNBOOK_RUNTIME_MEMORY_LIMIT_NETAPI:-384m}
+    - RUNBOOK_RUNTIME_MEMORY_LIMIT_CHAINCODE=${RUNBOOK_RUNTIME_MEMORY_LIMIT_CHAINCODE:-256m}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_PEER=${RUNBOOK_RUNTIME_PIDS_LIMIT_PEER:-512}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_ORDERER=${RUNBOOK_RUNTIME_PIDS_LIMIT_ORDERER:-512}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_CA=${RUNBOOK_RUNTIME_PIDS_LIMIT_CA:-256}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_COUCH=${RUNBOOK_RUNTIME_PIDS_LIMIT_COUCH:-256}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_APIGATEWAY=${RUNBOOK_RUNTIME_PIDS_LIMIT_APIGATEWAY:-256}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_NETAPI=${RUNBOOK_RUNTIME_PIDS_LIMIT_NETAPI:-256}
+    - RUNBOOK_RUNTIME_PIDS_LIMIT_CHAINCODE=${RUNBOOK_RUNTIME_PIDS_LIMIT_CHAINCODE:-128}
+    - RUNBOOK_RUNTIME_COMMAND_CHAINCODE=${RUNBOOK_RUNTIME_COMMAND_CHAINCODE:-tail -f /dev/null}
+    - DOCKER_HOST=$API_DOCKER_HOST
+    - RUN_MODE=task
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+    - postgres-server
+
+  dashboard:
+    image: hyperledger/cello-dashboard
+    container_name: cello-dashboard
+    links:
+    - nginx
+    environment:
+    - API_PROXY=http://nginx:80/engine
+    - SERVICE_PORT=$API_ENGINE_SERVICE_PORT
+    ports:
+    - "${DASHBOARD_SERVICE_PORT}:80"

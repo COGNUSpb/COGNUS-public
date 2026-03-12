@@ -1,0 +1,11 @@
+# Keep Docker build contexts lean and avoid permission issues with host-mounted data.
+.git
+.gitignore
+.venv
+node_modules
+cello-storage
+cello-v2/cello-storage
+cello-v2/src/api-engine/cello-storage
+chaincode-gateway/data
+__pycache__/
+*.pyc

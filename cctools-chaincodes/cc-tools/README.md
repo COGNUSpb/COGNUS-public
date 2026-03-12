@@ -1,0 +1,50 @@
+# GoLedger CC Tools
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/hyperledger-labs/cc-tools)](https://goreportcard.com/report/github.com/hyperledger-labs/cc-tools)
+[![GoDoc](https://godoc.org/github.com/hyperledger-labs/cc-tools?status.svg)](https://godoc.org/github.com/hyperledger-labs/cc-tools)
+
+This project is a GoLedger open-source project aimed at providing tools for Hyperledger Fabric chaincode development in Golang. This might have breaking changes before we arrive at release v1.0.0. 
+
+## Local Workspace Note
+
+In this workspace, `cc-tools` is kept as a local mirror of the upstream library used by chaincodes integrated with the COGNUSpb orchestration flow.
+
+- It is a foundational library dependency, not an operational catalog of example chaincodes.
+- Provisioning flows must rely on explicit `artifact_ref` or `source_ref`, never on implicit local workspace discovery.
+- When documentation needs a public example implementation, the reference repository is [hyperledger-labs/cc-tools-demo](https://github.com/hyperledger-labs/cc-tools-demo).
+
+- Architecture baseline: `docs/new-orchestrator-overview.md`
+- Delivery plan: `docs/entregas/README.md`
+- Implementation epics: `docs/entregas/roadmap-epicos.md`
+
+This section adds local integration context and does not replace upstream project guidance.
+
+## Getting Started
+
+Make sure you visit the repository [hyperledger-labs/cc-tools-demo](https://github.com/hyperledger-labs/cc-tools-demo), which is a template of a functional chaincode that uses cc-tools and provides ready-to-use scripts to deploy development networks. This is our preferred way of working, but you can feel free to import the package and assemble the chaincode as you choose. 
+
+CC Tools has been tested with Hyperledger Fabric 1.x and 2.x realeases.
+
+## Features
+- Standard asset data mapping (and their properties)
+- Encapsulation of Hyperledger Fabric chaincode sdk interface functions
+- Standard asset key management
+- Basic types of asset properties (text, number, boolean, date) available
+- Basic asset array type (text, number or date arrays) available
+- New asset property types customization
+- Asset within assets available as references
+- Asset array available as references
+- Management of asset details
+- Write permissions by set of organizations for each asset's property
+- Private data collections management by asset (read permissions)
+- Create/Read/Update/Delete (CRUD) transactions embedded
+- Custom transactions, with prior definition of arguments, webservice method (GET, POST etc)
+- Management of transaction details
+- Compatible web service
+
+## Contributing
+Feel free to fork it, create issues and PRs. We'll be happy to review them.
+
+## Join our community
+
+If you want to chat about Fabric, cc-tools and blockchain, you can reach GoLedger's technical team at our [Discord](https://discord.com/invite/GndkYHxNyQ)!

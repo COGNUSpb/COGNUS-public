@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  harness-ssh:
+    build: .
+    container_name: cognus-harness-ssh
+    ports:
+      - "2222:22"
+      - "8080:8080"
+    volumes:
+      - ./srv:/srv
+    restart: unless-stopped

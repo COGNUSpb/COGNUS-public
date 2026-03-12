@@ -1,0 +1,16 @@
+export API_ENGINE_WEBROOT?=/engine
+export POSTGRES_USER?=admin
+export POSTGRES_PASSWORD?=password
+export API_ENGINE_SERVICE_PORT?=8085
+export API_ENGINE_ADMIN_TOKEN?=administrator
+export API_ENGINE_ADMIN_USERNAME?=admin
+export API_ENGINE_ADMIN_PASSWORD?=pass
+export API_ENGINE_ADMIN_EMAIL?=admin@cello.com
+export API_DOCKER_HOST?=unix://var/run/docker.sock
+export API_VERSION?=master
+export CHAINCODE_GATEWAY_DIR?=${ROOT_PATH}/../chaincode-gateway
+export CCAPI_IDENTITIES_FILE?=${CHAINCODE_GATEWAY_DIR}/identities.json
+export CCAPI_COMPOSE_FILE?=${CHAINCODE_GATEWAY_DIR}/docker-compose.yaml
+export CCAPI_CCP_TEMPLATE?=${CHAINCODE_GATEWAY_DIR}/data/connection-{org}.json
+export CCAPI_CONTAINER_STORAGE?=/opt/cello
+export CCAPI_HOST_STORAGE?=/opt/cello

@@ -1,0 +1,17 @@
+version: '3.2'
+services:
+  dashboard:
+    image: hyperledger/cello-dashboard
+    container_name: cello-dashboard
+    restart: unless-stopped
+    environment:
+      - API_PROXY=http://cello-api-engine:8080/api/v1
+      - SERVICE_PORT=8081
+    ports:
+      - "8081:80"
+    networks:
+      - cello-net
+
+networks:
+  cello-net:
+    external: true

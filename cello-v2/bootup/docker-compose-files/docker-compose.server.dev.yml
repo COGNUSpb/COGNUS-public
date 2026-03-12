@@ -1,0 +1,95 @@
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+services:
+  cello-dashboard:
+    image: hyperledger/cello-dashboard
+    container_name: cello-dashboard
+    ports:
+      - "${DASHBOARD_SERVICE_PORT:-8081}:8081"
+    networks:
+      - cello-net
+    depends_on:
+      - cello-api-engine
+
+  # pg database
+  cello-postgres:
+    image: postgres:12.0
+    container_name: cello-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=api_engine
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+    ports:
+      - "5432:5432"
+    volumes:
+      - ${CELLO_STORAGE_PATH:-../../cello-storage}/pgdata:/var/lib/postgresql/data
+    networks:
+      - cello-net
+
+  # api engine service of cello 
+  cello-api-engine:
+    image: hyperledger/cello-api-engine
+    container_name: cello-api-engine
+    restart: unless-stopped
+    stdin_open: true
+    dns_search: .
+    environment:
+      - GODEBUG=netdns=go
+      - DB_NAME=api_engine
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_HOST=cello-postgres
+      - CELERY_BROKER_URL=redis://redis
+      - DB_PORT=5432
+      - DEBUG=True
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - FABRIC_LOGGING_SPEC=INFO
+      - API_ENGINE_BOOTSTRAP_ADMIN=${API_ENGINE_BOOTSTRAP_ADMIN:-false}
+      - RUNBOOK_ENABLED_NODE_TYPES=${RUNBOOK_ENABLED_NODE_TYPES:-peer,orderer,ca,couch,apigateway,netapi,chaincode}
+      - RUNBOOK_PROVISION_RUNTIME_STAGGER_SECONDS=${RUNBOOK_PROVISION_RUNTIME_STAGGER_SECONDS:-2}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_PEER=${RUNBOOK_RUNTIME_CPU_LIMIT_PEER:-0.75}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_ORDERER=${RUNBOOK_RUNTIME_CPU_LIMIT_ORDERER:-0.75}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_CA=${RUNBOOK_RUNTIME_CPU_LIMIT_CA:-0.50}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_COUCH=${RUNBOOK_RUNTIME_CPU_LIMIT_COUCH:-0.50}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_APIGATEWAY=${RUNBOOK_RUNTIME_CPU_LIMIT_APIGATEWAY:-0.50}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_NETAPI=${RUNBOOK_RUNTIME_CPU_LIMIT_NETAPI:-0.50}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_CHAINCODE=${RUNBOOK_RUNTIME_CPU_LIMIT_CHAINCODE:-0.25}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_PEER=${RUNBOOK_RUNTIME_MEMORY_LIMIT_PEER:-768m}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_ORDERER=${RUNBOOK_RUNTIME_MEMORY_LIMIT_ORDERER:-768m}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_CA=${RUNBOOK_RUNTIME_MEMORY_LIMIT_CA:-384m}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_COUCH=${RUNBOOK_RUNTIME_MEMORY_LIMIT_COUCH:-512m}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_APIGATEWAY=${RUNBOOK_RUNTIME_MEMORY_LIMIT_APIGATEWAY:-384m}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_NETAPI=${RUNBOOK_RUNTIME_MEMORY_LIMIT_NETAPI:-384m}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_CHAINCODE=${RUNBOOK_RUNTIME_MEMORY_LIMIT_CHAINCODE:-256m}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_PEER=${RUNBOOK_RUNTIME_PIDS_LIMIT_PEER:-512}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_ORDERER=${RUNBOOK_RUNTIME_PIDS_LIMIT_ORDERER:-512}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_CA=${RUNBOOK_RUNTIME_PIDS_LIMIT_CA:-256}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_COUCH=${RUNBOOK_RUNTIME_PIDS_LIMIT_COUCH:-256}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_APIGATEWAY=${RUNBOOK_RUNTIME_PIDS_LIMIT_APIGATEWAY:-256}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_NETAPI=${RUNBOOK_RUNTIME_PIDS_LIMIT_NETAPI:-256}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_CHAINCODE=${RUNBOOK_RUNTIME_PIDS_LIMIT_CHAINCODE:-128}
+      - RUNBOOK_RUNTIME_COMMAND_CHAINCODE=${RUNBOOK_RUNTIME_COMMAND_CHAINCODE:-tail -f /dev/null}
+      - RUNBOOK_STORE_FILE=${RUNBOOK_STORE_FILE:-/opt/cello/runbook-store/cognus_runbook_store.json}
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/host/var/run/docker.sock
+      - ${CELLO_STORAGE_PATH:-../../cello-storage}:/opt/cello
+    networks:
+      - cello-net
+    depends_on:
+      - cello-postgres
+
+networks:
+  cello-net:
+    name: cello-net
+
+volumes:
+  cello-api-engine:
+  cello-postgres:
+  cello-dashboard:

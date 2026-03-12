@@ -1,0 +1,84 @@
+@import '~antd/lib/style/themes/default.less';
+
+.main {
+  width: 388px;
+  margin: 0 auto;
+  padding: 28px 28px 20px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(11, 18, 32, 0.12);
+  @media screen and (max-width: @screen-sm) {
+    width: 95%;
+    padding: 20px 16px;
+  }
+
+  :global {
+    .ant-tabs-tab {
+      font-weight: 600;
+
+      .ant-tabs-tab-btn {
+        color: #334155;
+      }
+    }
+
+    .ant-tabs-tab:hover .ant-tabs-tab-btn {
+      color: #1d4ed8;
+    }
+
+    .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+      color: #3b82f6;
+    }
+
+    .ant-tabs-ink-bar {
+      background: linear-gradient(90deg, #2563eb 0%, #14b8a6 100%);
+    }
+
+    .ant-btn-primary {
+      background: #2563eb;
+      border-color: #2563eb;
+    }
+
+    .ant-btn-primary:hover,
+    .ant-btn-primary:focus {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+    }
+
+    .ant-checkbox-wrapper {
+      color: #374151;
+      font-weight: 500;
+    }
+
+    .ant-checkbox-wrapper span:last-child {
+      color: #374151;
+    }
+  }
+
+  .icon {
+    margin-left: 16px;
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 24px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: @primary-color;
+    }
+  }
+
+  .other {
+    margin-top: 24px;
+    line-height: 22px;
+    text-align: left;
+
+    .register {
+      float: right;
+    }
+  }
+}
+
+.alertText {
+  color: @alert-text-color;
+}

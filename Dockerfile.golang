@@ -1,0 +1,17 @@
+FROM python:3.11-slim
+
+ENV GO_VERSION=1.24.2 \
+    GOROOT=/usr/local/go \
+    GOPATH=/go \
+    PATH="/usr/local/go/bin:/go/bin:${PATH}"
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates curl wget build-essential git && \
+    curl -fsSL "https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz" -o /tmp/go.tar.gz && \
+    tar -C /usr/local -xzf /tmp/go.tar.gz && \
+    rm /tmp/go.tar.gz && \
+    mkdir -p "$GOPATH/bin" && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+CMD ["go", "version"]

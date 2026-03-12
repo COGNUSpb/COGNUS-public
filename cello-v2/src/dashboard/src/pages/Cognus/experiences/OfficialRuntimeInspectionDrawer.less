@@ -1,0 +1,258 @@
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.summaryCard {
+  padding: 14px 16px;
+  background: linear-gradient(180deg, rgba(247, 250, 255, 0.98) 0%, rgba(239, 244, 251, 0.94) 100%);
+  border: 1px solid rgba(47, 107, 255, 0.12);
+  border-radius: 14px;
+}
+
+.summaryLabel {
+  margin-bottom: 6px;
+  color: #667892;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.summaryValue {
+  color: #172b4d;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.codePanel,
+.terminalPanel {
+  border: 1px solid rgba(27, 37, 89, 0.14);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(11, 16, 34, 0.12);
+}
+
+.codePanel {
+  background: linear-gradient(180deg, rgba(30, 30, 30, 0.98) 0%, rgba(37, 37, 38, 0.98) 100%);
+}
+
+.codePanelHeader,
+.terminalPanelHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.codePanelHeader {
+  background: linear-gradient(180deg, rgba(37, 37, 38, 0.96) 0%, rgba(30, 30, 30, 0.96) 100%);
+}
+
+.codePanelHeaderMeta,
+.terminalPanelContext,
+.terminalPanelChrome {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.codePanelTitle,
+.terminalPanelTitle {
+  color: #d4d4d4 !important;
+  font-weight: 600;
+}
+
+.codePanelLanguageTag,
+.terminalModeTag,
+.terminalModeTagMuted {
+  margin-inline-end: 0 !important;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 11px;
+}
+
+.codePanelLanguageTag {
+  color: #9cdcfe !important;
+  background: rgba(47, 107, 255, 0.12) !important;
+  border-color: rgba(47, 107, 255, 0.28) !important;
+}
+
+.codePanelSurface {
+  margin: 0;
+  padding: 14px 16px;
+  overflow: auto;
+  color: #d4d4d4;
+  font-size: 12px;
+  line-height: 1.65;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  white-space: pre;
+  word-break: normal;
+  background: #1e1e1e;
+}
+
+.terminalPanel {
+  background:
+    radial-gradient(circle at top right, rgba(124, 58, 237, 0.26), transparent 26%),
+    radial-gradient(circle at top left, rgba(47, 107, 255, 0.22), transparent 20%),
+    linear-gradient(180deg, #2c001e 0%, #170f23 100%);
+}
+
+.terminalPanelHeader {
+  background: linear-gradient(90deg, rgba(44, 0, 30, 0.94) 0%, rgba(65, 15, 74, 0.88) 100%);
+}
+
+.terminalPanelChrome {
+  min-width: 78px;
+}
+
+.terminalChromeDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.terminalModeTag {
+  color: #f3f4f6 !important;
+  background: rgba(47, 107, 255, 0.2) !important;
+  border-color: rgba(147, 197, 253, 0.22) !important;
+}
+
+.terminalModeTagMuted {
+  color: #d1d5db !important;
+  background: rgba(17, 24, 39, 0.34) !important;
+  border-color: rgba(209, 213, 219, 0.12) !important;
+}
+
+.followLogsButton {
+  color: #f8fafc !important;
+  background: rgba(124, 58, 237, 0.18) !important;
+  border-color: rgba(196, 181, 253, 0.24) !important;
+  border-radius: 999px !important;
+}
+
+.followLogsButtonActive {
+  background: rgba(44, 182, 166, 0.18) !important;
+  border-color: rgba(110, 231, 183, 0.26) !important;
+}
+
+.terminalViewport {
+  max-height: 460px;
+  padding: 14px 16px 18px;
+  overflow: auto;
+  background:
+    linear-gradient(180deg, rgba(44, 0, 30, 0.14) 0%, rgba(11, 16, 34, 0.18) 100%),
+    #300a24;
+  color: #f8fafc;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.terminalCommandRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terminalPrompt {
+  color: #6ee7b7;
+  font-weight: 600;
+}
+
+.terminalCommand {
+  color: #f3f4f6;
+}
+
+.logLine {
+  display: block;
+  min-width: fit-content;
+  white-space: pre;
+}
+
+.logLineSpacer {
+  height: 10px;
+}
+
+.logTimestamp {
+  color: #38bdf8;
+}
+
+.logSequence {
+  margin-left: 10px;
+  color: #c4b5fd;
+}
+
+.logLevel {
+  display: inline-block;
+  min-width: 54px;
+  margin-left: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.logLevelINFO {
+  color: #60a5fa;
+}
+
+.logLevelWARN,
+.logLevelWARNING {
+  color: #fbbf24;
+}
+
+.logLevelERROR,
+.logLevelERRO,
+.logLevelFATAL {
+  color: #f87171;
+}
+
+.logLevelDEBUG,
+.logLevelGeneric {
+  color: #d4d4d8;
+}
+
+.logMessage {
+  margin-left: 10px;
+}
+
+.logTagToken {
+  color: #34d399;
+}
+
+.logMessageText {
+  color: #f5f3ff;
+}
+
+@media (max-width: 960px) {
+  .toolbar {
+    align-items: stretch;
+  }
+
+  .codePanelHeader,
+  .terminalPanelHeader {
+    align-items: flex-start;
+  }
+
+  .terminalPanelChrome {
+    min-width: 0;
+  }
+}

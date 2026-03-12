@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: COGNUS public-main
+message: If you use this public software snapshot in academic work, please cite it using the metadata below.
+type: software
+authors:
+  - family-names: Silva
+    given-names: Matheus Lazaro Honorio da
+    email: matheus.lazaro@discente.ufg.br
+  - family-names: Carvalho
+    given-names: Sergio T.
+abstract: Public snapshot of COGNUS, a layered orchestrator for permissioned blockchains with operational governance, SSH-based provisioning, and operator-facing control-plane workflows.
+keywords:
+  - permissioned blockchain
+  - hyperledger fabric
+  - orchestration
+  - governance
+  - provisioning
+license: Apache-2.0
+version: public-main
+date-released: 2026-03-11
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Silva
+      given-names: Matheus Lazaro Honorio da
+    - family-names: Carvalho
+      given-names: Sergio T.
+  title: COGNUSpb: uma Arquitetura em Camadas para Orquestração e Governança Descentralizada em Redes Hyperledger Fabric
+  publisher: Universidade Federal de Goiás
+  year: 2026

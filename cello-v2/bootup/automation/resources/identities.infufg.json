@@ -1,0 +1,12 @@
+{
+  "infufg": {
+    "mspId": "InfufgMSP",
+    "ccpPath": "/workspace/data/connection-infufg.json",
+    "certPath": "/workspace/data/infufg/msp/signcerts/Admin@infufg.cello.local-cert.pem",
+    "keyPath": "/workspace/data/infufg/msp/keystore/priv_sk",
+    "channels": [
+      "stcs-channel"
+    ],
+    "discoveryAsLocalhost": false
+  }
+}

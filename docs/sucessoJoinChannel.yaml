@@ -1,0 +1,12 @@
+deprecated: true
+replaced_at: "2026-03-08"
+title: "Historical join-channel transcript removed from active documentation"
+reason: >
+  This file previously stored a raw troubleshooting transcript with static sample
+  identifiers for channel and chaincode values. Those names are not part of the
+  provisioning contract and should not appear as active product documentation.
+guidance:
+  - Use dynamic `channel_id` and `chaincode_id` values from the provisioning payload.
+  - Use explicit `artifact_ref` or `source_ref` for chaincode onboarding.
+  - When documentation needs a public example for cc-tools-based chaincodes, reference `https://github.com/hyperledger-labs/cc-tools-demo`.
+status: "kept only as a deprecation marker to preserve file path continuity"

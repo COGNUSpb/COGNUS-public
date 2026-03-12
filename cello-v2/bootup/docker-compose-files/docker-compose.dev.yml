@@ -1,0 +1,142 @@
+# This compose file will deploy the services, and bootup a postgres server.
+
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+#  cello-dashboard: dashboard service for cello
+#  cello-api-engine: api engine service of cello to provide RESTful APIs, listen on 8080
+#  cello-postgres: postgres db 
+
+services:
+  cello-dashboard:
+    image: hyperledger/cello-dashboard
+    container_name: cello-dashboard
+    restart: unless-stopped
+    ports:
+      - "${DASHBOARD_SERVICE_PORT:-8081}:8081"
+    networks:
+      - cello-net
+    depends_on:
+      - cello-api-engine
+
+  # pg database
+  cello-postgres:
+    image: postgres:12.0
+    container_name: cello-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=api_engine
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+    ports:
+      - "5432:5432"
+    volumes:
+      - ${CELLO_STORAGE_PATH:-../../cello-storage}/pgdata:/var/lib/postgresql/data
+    networks:
+      - cello-net
+
+  # api engine service of cello 
+  cello-api-engine:
+    image: hyperledger/cello-api-engine
+    container_name: cello-api-engine
+    restart: unless-stopped
+    stdin_open: true
+    dns_search: .
+    environment:
+      - GODEBUG=netdns=go
+      - DB_NAME=api_engine
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_HOST=cello-postgres
+      - CELERY_BROKER_URL=redis://redis
+      - DB_PORT=5432
+      - DEBUG=True
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - FABRIC_LOGGING_SPEC=INFO
+      - API_ENGINE_BOOTSTRAP_ADMIN=${API_ENGINE_BOOTSTRAP_ADMIN:-false}
+      - RUNBOOK_STORE_FILE=${RUNBOOK_STORE_FILE:-/opt/cello/runbook-store/cognus_runbook_store.json}
+      - RUNBOOK_ENABLED_NODE_TYPES=${RUNBOOK_ENABLED_NODE_TYPES:-peer,orderer,ca,couch,apigateway,netapi,chaincode}
+      - RUNBOOK_SSH_TIMEOUT_SECONDS=${RUNBOOK_SSH_TIMEOUT_SECONDS:-900}
+      - RUNBOOK_PROVISION_RUNTIME_TIMEOUT_SECONDS=${RUNBOOK_PROVISION_RUNTIME_TIMEOUT_SECONDS:-7200}
+      - RUNBOOK_RUNTIME_PULL_TIMEOUT_SECONDS=${RUNBOOK_RUNTIME_PULL_TIMEOUT_SECONDS:-1800}
+      - RUNBOOK_RUNTIME_IMAGE_PRESEED_PULL_TIMEOUT_SECONDS=${RUNBOOK_RUNTIME_IMAGE_PRESEED_PULL_TIMEOUT_SECONDS:-1800}
+      - RUNBOOK_RUNTIME_IMAGE_SEED_BASE_TIMEOUT_SECONDS=${RUNBOOK_RUNTIME_IMAGE_SEED_BASE_TIMEOUT_SECONDS:-7200}
+      - RUNBOOK_RUNTIME_IMAGE_SEED_MAX_TIMEOUT_SECONDS=${RUNBOOK_RUNTIME_IMAGE_SEED_MAX_TIMEOUT_SECONDS:-21600}
+      - RUNBOOK_PROVISION_RUNTIME_STAGGER_SECONDS=${RUNBOOK_PROVISION_RUNTIME_STAGGER_SECONDS:-2}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_PEER=${RUNBOOK_RUNTIME_CPU_LIMIT_PEER:-0.75}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_ORDERER=${RUNBOOK_RUNTIME_CPU_LIMIT_ORDERER:-0.75}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_CA=${RUNBOOK_RUNTIME_CPU_LIMIT_CA:-0.50}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_COUCH=${RUNBOOK_RUNTIME_CPU_LIMIT_COUCH:-0.50}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_APIGATEWAY=${RUNBOOK_RUNTIME_CPU_LIMIT_APIGATEWAY:-0.50}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_NETAPI=${RUNBOOK_RUNTIME_CPU_LIMIT_NETAPI:-0.50}
+      - RUNBOOK_RUNTIME_CPU_LIMIT_CHAINCODE=${RUNBOOK_RUNTIME_CPU_LIMIT_CHAINCODE:-0.25}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_PEER=${RUNBOOK_RUNTIME_MEMORY_LIMIT_PEER:-768m}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_ORDERER=${RUNBOOK_RUNTIME_MEMORY_LIMIT_ORDERER:-768m}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_CA=${RUNBOOK_RUNTIME_MEMORY_LIMIT_CA:-384m}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_COUCH=${RUNBOOK_RUNTIME_MEMORY_LIMIT_COUCH:-512m}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_APIGATEWAY=${RUNBOOK_RUNTIME_MEMORY_LIMIT_APIGATEWAY:-384m}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_NETAPI=${RUNBOOK_RUNTIME_MEMORY_LIMIT_NETAPI:-384m}
+      - RUNBOOK_RUNTIME_MEMORY_LIMIT_CHAINCODE=${RUNBOOK_RUNTIME_MEMORY_LIMIT_CHAINCODE:-256m}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_PEER=${RUNBOOK_RUNTIME_PIDS_LIMIT_PEER:-512}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_ORDERER=${RUNBOOK_RUNTIME_PIDS_LIMIT_ORDERER:-512}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_CA=${RUNBOOK_RUNTIME_PIDS_LIMIT_CA:-256}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_COUCH=${RUNBOOK_RUNTIME_PIDS_LIMIT_COUCH:-256}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_APIGATEWAY=${RUNBOOK_RUNTIME_PIDS_LIMIT_APIGATEWAY:-256}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_NETAPI=${RUNBOOK_RUNTIME_PIDS_LIMIT_NETAPI:-256}
+      - RUNBOOK_RUNTIME_PIDS_LIMIT_CHAINCODE=${RUNBOOK_RUNTIME_PIDS_LIMIT_CHAINCODE:-128}
+      - RUNBOOK_RUNTIME_COMMAND_CHAINCODE=${RUNBOOK_RUNTIME_COMMAND_CHAINCODE:-tail -f /dev/null}
+      - CHAINCODE_GATEWAY_DIR=${CHAINCODE_GATEWAY_DIR:-/workspace/chaincode-gateway}
+      - CCAPI_IDENTITIES_FILE=${CCAPI_IDENTITIES_FILE:-/workspace/chaincode-gateway/data/identities.json}
+      - CCAPI_COMPOSE_FILE=${CCAPI_COMPOSE_FILE:-/workspace/chaincode-gateway/docker-compose.yaml}
+      - CCAPI_CCP_TEMPLATE=${CCAPI_CCP_TEMPLATE:-data/connection-{org}.json}
+      - CCAPI_CONTAINER_STORAGE=${CCAPI_CONTAINER_STORAGE:-/opt/cello}
+      - CCAPI_HOST_STORAGE=${CCAPI_HOST_STORAGE:-/opt/cello}
+      - GATEWAY_DATA_DIR=/workspace/chaincode-gateway/data
+      - AUTOMATION_RESOURCES_DIR=/workspace/automation/resources
+      - HOST_GATEWAY_DATA_DIR=/workspace/root-chaincode-gateway/data
+      - HOST_AUTOMATION_RESOURCES_DIR=/workspace/root-automation/resources
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/host/var/run/docker.sock
+      - ${CELLO_STORAGE_PATH:-../../cello-storage}:/opt/cello
+      - ../chaincode-gateway:/workspace/chaincode-gateway
+      - ../automation:/workspace/automation
+      - ../../chaincode-gateway:/workspace/root-chaincode-gateway
+      - ../../automation:/workspace/root-automation
+    networks:
+      - cello-net
+    depends_on:
+      - cello-postgres
+
+  # cello docker agent may deploy to an individual server. This cofig only serves development purpose.
+  cello-docker-agent:
+    image: hyperledger/cello-agent-docker
+    container_name: cello-docker-agent
+    hostname: cello.docker.agent
+    restart: always
+    ports:
+      - "2375:2375"
+      - "5001:5001"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DOCKER_URL=unix://var/run/docker.sock
+      - STORAGE_PATH=${CELLO_STORAGE_PATH:-../../cello-storage}/hyperledger
+      - HOST_BASE_PATH=${HOST_BASE_PATH:-${PWD}/bootup/docker-compose-files}
+    networks:
+      - cello-net
+
+networks:
+  cello-net:
+    name: cello-net
+    external: true
+
+volumes:
+  cello-api-engine:
+  cello-postgres:
+  cello-dashboard:
+  cello-docker-agent:

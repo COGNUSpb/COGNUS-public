@@ -1,0 +1,11 @@
+.git
+.tox
+test*
+Dockerfile*
+*~
+screenshots
+**/node_modules
+**/.temp
+**/__pycache__
+cello-storage
+src/api-engine/cello-storage

@@ -1,0 +1,123 @@
+@startuml UFGOrchestratorComplete
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Arial"
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam ArrowColor #0A4
+skinparam rectangle {
+  RoundCorner 12
+}
+skinparam note {
+  BackgroundColor #FFF5CC
+  BorderColor #E0B200
+  FontColor #5C4B00
+}
+
+title Orchestrator and Operations - UFG Blockchain Fabric
+
+rectangle "End users" as endusers #f6f6f6
+rectangle "Operators" as operators #f6f6f6
+
+rectangle "External applications\n(REST consumption)" as apps #F0F7FF
+
+rectangle "Operator and Orchestrator\nUFG Blockchain Fabric" as orchestrator #E6F6EC {
+  component "<<Gateway>>\nGateway RESTFul" as gateway #D2F2DE
+  component "<<UI>>\nDashboard (Cello UI)" as dashboard #D2F2DE
+  component "<<API>>\nAPI Engine and Governance" as api #D2F2DE
+  component "<<Automation>>\nScheduler & Hooks\n(Automated lifecycle)" as hooks #D2F2DE
+}
+
+database "Shared Storage\n(cello-storage + wallets)" as storage #EFE9FF
+
+rectangle "Docker/Kubernetes Infrastructure\n(cello-docker-agent)" as infra #FFF4D6
+
+rectangle "Observability\n(Prometheus / Grafana) [planned]" as observability #F0F7FF
+
+rectangle "<Blockchain>\nHyperledger Fabric" as fabricbox #DCE7FF {
+  rectangle "Org INF-UFG" as org #C2F0D0 {
+    component "Certificate Authority" as ca #A7E2B6
+    component "TLS Certificate Authority" as tlsca #A7E2B6
+    database "MSP & Policies\n(configtx, anchors,\nadmin certs)" as mspstore #B6E8C5
+    component "Orderer0 (raft)" as orderer0 #A7E2B6
+    component "Orderer1 (raft)" as orderer1 #A7E2B6
+    component "Orderer2 (raft)" as orderer2 #A7E2B6
+    component "Peer0\n+ CouchDB + cc pods" as peer0 #A7E2B6
+    component "Peer1\n+ CouchDB + cc pods" as peer1 #A7E2B6
+  }
+  rectangle "Network / Business Group" as channels #EAF1FF {
+    rectangle "stcs-channel" as stcs #FFFFFF
+    rectangle "token-erc20-channel" as erc20 #FFFFFF
+    rectangle "fakenews-channel" as fakenews #FFFFFF
+  }
+  rectangle "Chaincodes (Smart Contracts)" as chaincodes #FFFDF2 {
+    rectangle "Assets" as assets #FFFFFF
+    rectangle "Transactions" as transactions #FFFFFF
+    rectangle "Events" as events #FFFFFF
+  }
+}
+
+note right of chaincodes
+  cc-tools chaincodes provide generic functions:
+  createAsset, updateAsset, deleteAsset, search,
+  readAsset, readAssetHistory, getSchema, getHeader, getTx.
+end note
+
+note right of gateway
+  Automatic organization selection based
+  on the requested channel (`?org=` only as override).
+end note
+
+note bottom of hooks
+  Post-commit hooks generate identities.json +
+  connection-<org>.json and trigger `docker compose up`
+  to refresh the REST gateway.
+end note
+
+note left of infra
+  Agents may run on distinct hosts connected
+  to the `cello-net` network (Docker or K8s).
+end note
+
+endusers --> apps : consume services
+apps --> gateway : invoke REST contracts
+operators --> dashboard : provision and monitor
+dashboard --> api : operations
+apps -[hidden]-> storage
+gateway --> storage : reads wallets/metadata
+hooks --> storage : writes identities.json\n+ connection-<org>.json
+api --> hooks : requests automations
+hooks --> infra : provisions peers/orderers
+infra --> fabricbox : delivers nodes
+gateway --> fabricbox : submit/evaluate transactions
+api --> fabricbox : install / approve / commit
+
+gateway ..> observability : consumption telemetry
+dashboard ..> observability : dashboards
+hooks ..> observability : events and metrics
+
+fabricbox -[hidden]-> observability
+
+endusers -[#gray,dashed]-> operators : feedback / governance
+
+apps -[#gray,dotted]-> observability : logs (planned)
+
+channels ..> chaincodes : associa canais aos smart contracts
+org --> channels : peers participam dos canais
+ca --> mspstore
+tlsca --> mspstore
+mspstore --> peer0
+mspstore --> peer1
+mspstore --> orderer0
+mspstore --> orderer1
+mspstore --> orderer2
+orderer0 -[#0A4]- orderer1
+orderer1 -[#0A4]- orderer2
+peer0 .. peer1 : gossip / state sync
+
+note right of mspstore
+  MSP artifact repository:
+  admin certs, policies, anchors,
+  CRLs, and renewed TLS material.
+end note
+
+@enduml

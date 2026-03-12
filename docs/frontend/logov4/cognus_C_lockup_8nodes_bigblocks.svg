@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="980" viewBox="0 0 900 980" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="980" rx="60" fill="#FFFFFF"/>
+  <g transform="translate(194,90)">
+    <defs>
+    <radialGradient id="sphereGrad" cx="40%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.92"/>
+      <stop offset="45%" stop-color="#14B8A6" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#2563EB" stop-opacity="1"/>
+    </radialGradient>
+
+    <linearGradient id="cubeTopGrad" x1="-28" y1="-30" x2="28" y2="14" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14B8A6" stop-opacity="1"/>
+      <stop offset="1" stop-color="#2563EB" stop-opacity="1"/>
+    </linearGradient>
+
+    <linearGradient id="cStrokeGrad" x1="120" y1="120" x2="392" y2="392" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14B8A6"/>
+      <stop offset="0.55" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+
+    <filter id="softShadow" x="-35%" y="-35%" width="170%" height="170%">
+      <feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#0B1220" flood-opacity="0.18"/>
+    </filter>
+
+    <filter id="cDepth" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0B1220" flood-opacity="0.22"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#0B1220" flood-opacity="0.14"/>
+    </filter>
+
+    
+    <g id="cube">
+      <polygon points="0.00,-30.80 28.00,-15.40 0.00,0.00 -28.00,-15.40" fill="url(#cubeTopGrad)" stroke="#0B1220" stroke-opacity="0.10" stroke-width="1.4"/>
+      <polygon points="0.00,0.00 -28.00,-15.40 -28.00,15.40 0.00,30.80" fill="#2563EB" opacity="0.96" stroke="#0B1220" stroke-opacity="0.10" stroke-width="1.4"/>
+      <polygon points="0.00,0.00 28.00,-15.40 28.00,15.40 0.00,30.80" fill="#7C3AED" opacity="0.90" stroke="#0B1220" stroke-opacity="0.10" stroke-width="1.4"/>
+      <path d="M 0 0 L 28.00 -15.40" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M 0 0 L -28.00 -15.40" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="1.6" stroke-linecap="round"/>
+    </g>
+    
+  </defs>
+
+  <path d="M 404.6 380.7 A 194.0 194.0 0 1 1 404.6 131.3" stroke="#0B1220" stroke-opacity="0.20" stroke-width="18"
+        stroke-linecap="round" filter="url(#cDepth)"/>
+
+  <path d="M 404.6 380.7 A 194.0 194.0 0 1 1 404.6 131.3" stroke="url(#cStrokeGrad)" stroke-width="16"
+        stroke-linecap="round" opacity="0.95"/>
+
+  <path d="M 404.6 380.7 A 194.0 194.0 0 1 1 404.6 131.3" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="5.2"
+        stroke-linecap="round" />
+
+  <circle cx="404.6" cy="380.7" r="5.0" fill="#14B8A6" opacity="0.70"/>
+  <circle cx="404.6" cy="131.3" r="5.0" fill="#7C3AED" opacity="0.65"/>
+
+  <g stroke="#2563EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.55">
+    <path d="M 256.0 106.0 L 362.1 149.9" /><path d="M 362.1 149.9 L 406.0 256.0" /><path d="M 406.0 256.0 L 362.1 362.1" /><path d="M 362.1 362.1 L 256.0 406.0" /><path d="M 256.0 406.0 L 149.9 362.1" /><path d="M 149.9 362.1 L 106.0 256.0" /><path d="M 106.0 256.0 L 149.9 149.9" /><path d="M 149.9 149.9 L 256.0 106.0" />
+  </g>
+
+  <g stroke="#14B8A6" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.60">
+    <path d="M 256.0 106.0 L 256.0 180.0" /><path d="M 362.1 149.9 L 309.7 202.3" /><path d="M 406.0 256.0 L 332.0 256.0" /><path d="M 362.1 362.1 L 309.7 309.7" /><path d="M 256.0 406.0 L 256.0 332.0" /><path d="M 149.9 362.1 L 202.3 309.7" /><path d="M 106.0 256.0 L 180.0 256.0" /><path d="M 149.9 149.9 L 202.3 202.3" />
+  </g>
+
+  <g stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.45">
+    <path d="M 256.0 180.0 L 309.7 309.7" /><path d="M 309.7 202.3 L 256.0 332.0" /><path d="M 332.0 256.0 L 202.3 309.7" /><path d="M 309.7 309.7 L 180.0 256.0" /><path d="M 256.0 332.0 L 202.3 202.3" /><path d="M 202.3 309.7 L 256.0 180.0" /><path d="M 180.0 256.0 L 309.7 202.3" /><path d="M 202.3 202.3 L 332.0 256.0" />
+  </g>
+
+  <circle cx="256" cy="256" r="80.0" stroke="#2563EB" stroke-width="6" opacity="0.35"/>
+
+  <g filter="url(#softShadow)">
+    <use href="#cube" transform="translate(256.0,106.0)" />
+<use href="#cube" transform="translate(362.1,149.9)" />
+<use href="#cube" transform="translate(406.0,256.0)" />
+<use href="#cube" transform="translate(362.1,362.1)" />
+<use href="#cube" transform="translate(256.0,406.0)" />
+<use href="#cube" transform="translate(149.9,362.1)" />
+<use href="#cube" transform="translate(106.0,256.0)" />
+<use href="#cube" transform="translate(149.9,149.9)" />
+  </g>
+
+  <g filter="url(#softShadow)">
+    <circle cx="256" cy="256" r="62.0" fill="url(#sphereGrad)"/>
+    <circle cx="256" cy="256" r="62.0" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="3"/>
+    <path d="M 238 258 L 251 271 L 276 244" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  </g>
+  <text x="450" y="735" text-anchor="middle"
+        font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial"
+        font-weight="300" font-size="86" letter-spacing="10"
+        fill="#2563EB">
+    COGNUS
+  </text>
+  <text x="450" y="805" text-anchor="middle"
+        font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial"
+        font-weight="600" font-size="22" letter-spacing="1.2"
+        fill="#0B1220" opacity="0.72">
+    Orquestração e Governança Descentralizada • Permissioned Blockchains
+  </text>
+</svg>
