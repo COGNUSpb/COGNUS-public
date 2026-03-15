@@ -64,6 +64,35 @@ Manual functional check:
 4. Open `Automação de provisão e lifecycle`.
 5. Supply your own Linux host credentials for real provisioning, or use the local SSH harness described in [ARTIFACT.md](ARTIFACT.md).
 
+## Additional Execution Examples
+
+Local SSH-oriented example without a real VM:
+
+```bash
+cd automation/harness
+docker compose up --build -d
+```
+
+Then use the following values in the provisioning flow:
+
+- SSH host: `localhost`
+- SSH port: `2222`
+- User: `cognus`
+- Password: `cognus`
+- Auxiliary HTTP endpoint for served artifacts: `http://localhost:8080`
+
+API-oriented validation example:
+
+```bash
+curl -I http://localhost:8080/api/v1/docs/
+python3 scripts/api_smoke_test.py \
+  --manifest marketplace/<channel>__<chaincode>.json \
+  --base-url http://localhost:8085/api \
+  --skip-mutations
+```
+
+These examples complement the minimal dashboard flow and cover additional public functionality documented for the current baseline.
+
 ## Public Documentation
 
 - [ARTIFACT.md](ARTIFACT.md)
