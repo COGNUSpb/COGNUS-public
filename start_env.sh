@@ -848,7 +848,7 @@ build_api_engine_image() {
     build_args+=(--build-arg "BASE_IMAGE=$base_image_source")
   fi
 
-  if ! DOCKER_BUILDKIT=1 docker build "${build_args[@]}" -t hyperledger/cello-api-engine "$build_ctx"; then
+  if ! docker build "${build_args[@]}" -t hyperledger/cello-api-engine "$build_ctx"; then
     log_warn "Falha ao construir hyperledger/cello-api-engine; mantendo imagem previamente disponível."
     return 1
   else
@@ -904,7 +904,7 @@ recreate_api_engine_service() {
   fi
 
   log_info "Recriando serviço cello-api-engine para aplicar imagem local atualizada."
-  docker compose -f "$compose_file" up -d --force-recreate --no-deps cello-api-engine
+  "${DOCKER_COMPOSE_CMD[@]}" -f "$compose_file" up -d --force-recreate --no-deps cello-api-engine
 }
 
 ensure_gateway_runtime_image_ready() {
@@ -1255,7 +1255,7 @@ EOF
     if [ -n "$peer_runtime_compose_file" ] && [ -f "$peer_runtime_compose_file" ]; then
       log_info "Compose peers/chaincode selecionado: $peer_runtime_compose_file"
       peer_runtime_compose_dir="$(dirname "$peer_runtime_compose_file")"
-      env -u COMPOSE_FILE docker compose --project-directory "$peer_runtime_compose_dir" -f "$peer_runtime_compose_file" up -d --force-recreate --remove-orphans
+      env -u COMPOSE_FILE "${DOCKER_COMPOSE_CMD[@]}" --project-directory "$peer_runtime_compose_dir" -f "$peer_runtime_compose_file" up -d --force-recreate --remove-orphans
     else
       log_warn "Nenhum docker-compose-couch.yaml foi encontrado. A inicializacao local vai continuar sem subir peers/chaincode."
       log_warn "Se quiser esse runtime local, defina COGNUS_PEER_RUNTIME_COMPOSE_FILE=/caminho/para/docker-compose-couch.yaml."
@@ -1264,7 +1264,7 @@ EOF
 
   log_info "(Pré-build) Subindo núcleo do orquestrador (cello-v2/bootup/docker-compose-files/docker-compose.dev.yml)"
   if [ -f "cello-v2/bootup/docker-compose-files/docker-compose.dev.yml" ]; then
-    docker compose -f cello-v2/bootup/docker-compose-files/docker-compose.dev.yml up -d --force-recreate --remove-orphans "${orchestrator_services[@]}"
+    "${DOCKER_COMPOSE_CMD[@]}" -f cello-v2/bootup/docker-compose-files/docker-compose.dev.yml up -d --force-recreate --remove-orphans "${orchestrator_services[@]}"
     log_info "Núcleo do orquestrador (pré-build) iniciado."
   else
     log_error "Arquivo docker-compose.dev.yml não encontrado. Não é possível subir o orquestrador."
@@ -1272,7 +1272,7 @@ EOF
 
   log_info "(Pós-build) Subindo núcleo do orquestrador (cello-v2/bootup/docker-compose-files/docker-compose.dev.yml)"
   if [ -f "cello-v2/bootup/docker-compose-files/docker-compose.dev.yml" ]; then
-    docker compose -f cello-v2/bootup/docker-compose-files/docker-compose.dev.yml up -d --force-recreate --remove-orphans "${orchestrator_services[@]}"
+    "${DOCKER_COMPOSE_CMD[@]}" -f cello-v2/bootup/docker-compose-files/docker-compose.dev.yml up -d --force-recreate --remove-orphans "${orchestrator_services[@]}"
     log_info "Núcleo do orquestrador (pós-build) iniciado. Acesse http://localhost:8081"
   else
     log_error "Arquivo docker-compose.dev.yml não encontrado. Não é possível subir o orquestrador."
