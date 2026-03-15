@@ -73,6 +73,7 @@ COGNUS_APIGATEWAY_IMAGE_LEGACY_ALIAS="${COGNUS_APIGATEWAY_IMAGE_LEGACY_ALIAS:-ch
 declare -a MISSING_IMAGES=()
 REGISTRY_AVAILABLE=0
 DOCKER_COMPOSE_CMD=()
+MAKE_AVAILABLE=0
 
 log() {
   local level="$1"
@@ -388,8 +389,49 @@ select_docker_compose() {
 run_make() {
   local dir="$1"
   local target="$2"
-  log_info "Executando 'make $target' em $dir"
-  (cd "$dir" && make "$target")
+  if [ "$MAKE_AVAILABLE" -eq 1 ]; then
+    log_info "Executando 'make $target' em $dir"
+    (cd "$dir" && make "$target")
+    return
+  fi
+
+  run_make_fallback "$dir" "$target"
+}
+
+resolve_docker_platform_arch() {
+  case "$(uname -m)" in
+    x86_64) printf '%s\n' 'amd64' ;;
+    aarch64|arm64) printf '%s\n' 'arm64' ;;
+    *) uname -m ;;
+  esac
+}
+
+run_make_fallback() {
+  local dir="$1"
+  local target="$2"
+  local platform_arch
+
+  platform_arch="$(resolve_docker_platform_arch)"
+  log_warn "'make' não encontrado; executando fallback nativo para o alvo '$target'."
+
+  case "$target" in
+    dashboard)
+      (cd "$dir" && docker build -t hyperledger/cello-dashboard:latest -f build_image/docker/common/dashboard/Dockerfile.in ./)
+      ;;
+    api-engine)
+      (cd "$dir" && docker build -t hyperledger/cello-api-engine:latest -f build_image/docker/common/api-engine/Dockerfile.in ./ --platform "linux/$platform_arch")
+      ;;
+    docker-rest-agent)
+      (cd "$dir" && docker build -t hyperledger/cello-agent-docker:latest -f build_image/docker/agent/docker-rest-agent/Dockerfile.in ./ --build-arg pip=pip.conf.bak --platform "linux/$platform_arch")
+      ;;
+    fabric)
+      (cd "$dir" && docker build -t hyperledger/fabric:2.5.13 -f build_image/docker/cello-hlf/Dockerfile build_image/docker/cello-hlf/)
+      ;;
+    *)
+      log_error "Fallback para target '$target' não implementado. Instale Make e execute novamente."
+      exit 1
+      ;;
+  esac
 }
 
 resolve_peer_runtime_compose_file() {
@@ -965,8 +1007,14 @@ main() {
 
   log_info "Iniciando start_env em $SCRIPT_DIR"
   ensure_command docker Docker
-  ensure_command make Make
   ensure_command npm Node.js
+
+  if command -v make >/dev/null 2>&1; then
+    MAKE_AVAILABLE=1
+  else
+    log_warn "Dependência opcional 'make' não encontrada; usando fallback direto com Docker para os builds suportados."
+  fi
+
   select_docker_compose
   ensure_docker_daemon_available
 
