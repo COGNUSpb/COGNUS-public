@@ -11,6 +11,7 @@
 
 ### Operations and automation
 
+- `public-endpoint-walkthrough.md` - published access path and screenshot-based walkthrough of the current baseline.
 - `auto-provisioning.md` - automation baseline for provisioning and lifecycle flows.
 - `marketplace-workflow.md` - catalog synchronization and artifact publication workflow.
 - `api-tests/README.md` - smoke and regression checks for gateway endpoints.

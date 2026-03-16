@@ -16,6 +16,16 @@ The public artifact is intended to be:
 - Dashboard URL for the public assessment endpoint: `http://200.137.197.215:8081`
 - Access mode: the application exposed through this endpoint allows self-registration for the `operator` role.
 
+## Published Endpoint Scope
+
+- Register a public `operator` account and authenticate in the published dashboard.
+- Inspect the overview dashboard and the current implemented navigation baseline.
+- Inspect `Provisioning automation and lifecycle`, including the guided SSH provisioning cockpit.
+- Inspect organization workspace screens, runtime inspection, logs, and support views.
+- Execute real SSH-backed provisioning only if you provide your own target Linux host credentials.
+
+See [docs/public-endpoint-walkthrough.md](docs/public-endpoint-walkthrough.md) for the published access path with screenshots.
+
 ## Included In The Public Artifact
 
 - `cello-v2/`: adapted control plane, dashboard, API Engine, and agents.
@@ -70,7 +80,7 @@ Expected result:
 2. Register a new `operator`.
 3. Log in.
 4. Confirm access to the dashboard at `/overview`.
-5. Open `Automação de provisão e lifecycle` and inspect the provisioning screens.
+5. Open `Provisioning automation and lifecycle` (pt-BR UI label: `Automação de provisão e lifecycle`) and inspect the provisioning screens.
 
 This public snapshot keeps the current implemented product flow, but it does not publish a public admin bootstrap path.
 
@@ -112,4 +122,6 @@ These credentials are intentionally external to the repository and are not part 
 ## Related Material
 
 - [README.md](README.md)
+- [PREREQUISITES.md](PREREQUISITES.md)
+- [docs/public-endpoint-walkthrough.md](docs/public-endpoint-walkthrough.md)
 - [docs/README.md](docs/README.md)

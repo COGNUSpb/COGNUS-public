@@ -7,6 +7,16 @@ Consortium Orchestration & Governance Network Unified System for permissioned bl
 - Dashboard URL for the public assessment endpoint: `http://200.137.197.215:8081`
 - Access mode: the application exposed through this endpoint allows self-registration for the `operator` role.
 
+## Public Endpoint Scope
+
+- Register a public `operator` account and authenticate in the published dashboard.
+- Inspect the overview dashboard and the current operator-facing navigation.
+- Inspect `Provisioning automation and lifecycle` and the guided SSH provisioning cockpit.
+- Inspect organization workspace screens, including runtime inspection and logs.
+- Exercise real SSH-backed provisioning only if you provide your own target Linux host credentials.
+
+See [docs/public-endpoint-walkthrough.md](docs/public-endpoint-walkthrough.md) for the published access path with screenshots.
+
 ## Public Snapshot Scope
 
 - Adapted `cello-v2` control plane with API Engine, dashboard, and agents.
@@ -70,7 +80,7 @@ Manual functional check:
 1. Open `http://localhost:8081`.
 2. Register an `operator`.
 3. Log in and confirm access to `/overview`.
-4. Open `Automação de provisão e lifecycle`.
+4. Open `Provisioning automation and lifecycle` (pt-BR UI label: `Automação de provisão e lifecycle`).
 5. Supply your own Linux host credentials for real provisioning, or use the local SSH harness described in [ARTIFACT.md](ARTIFACT.md).
 
 ## Additional Execution Examples
@@ -106,6 +116,7 @@ These examples complement the minimal dashboard flow and cover additional public
 
 - [ARTIFACT.md](ARTIFACT.md)
 - [PREREQUISITES.md](PREREQUISITES.md)
+- [docs/public-endpoint-walkthrough.md](docs/public-endpoint-walkthrough.md)
 - [docs/README.md](docs/README.md)
 - [docs/new-orchestrator-overview.md](docs/new-orchestrator-overview.md)
 - [docs/auto-provisioning.md](docs/auto-provisioning.md)
