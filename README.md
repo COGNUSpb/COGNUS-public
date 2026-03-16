@@ -2,6 +2,11 @@
 
 Consortium Orchestration & Governance Network Unified System for permissioned blockchains.
 
+## Public Assessment Access
+
+- Dashboard URL for the public assessment endpoint: `http://200.137.197.215:8081`
+- Access mode: the application exposed through this endpoint allows self-registration for the `operator` role.
+
 ## Public Snapshot Scope
 
 - Adapted `cello-v2` control plane with API Engine, dashboard, and agents.
@@ -28,8 +33,12 @@ Consortium Orchestration & Governance Network Unified System for permissioned bl
 
 - Linux x86_64.
 - Docker Engine 20.10+ with Docker Compose v2.
-- `git`, `make`, Node.js LTS, and Python 3.
+- `git`, Node.js LTS with `npm`, and Python 3.
+- `jq` if you enable the local gateway flow.
+- `make` is optional for `start_env.sh`.
 - Package repository access, or local image archives when running fully offline.
+
+See [PREREQUISITES.md](PREREQUISITES.md) for a fresh-VM setup guide.
 
 ## Quick Start From A Fresh Clone
 
@@ -96,6 +105,7 @@ These examples complement the minimal dashboard flow and cover additional public
 ## Public Documentation
 
 - [ARTIFACT.md](ARTIFACT.md)
+- [PREREQUISITES.md](PREREQUISITES.md)
 - [docs/README.md](docs/README.md)
 - [docs/new-orchestrator-overview.md](docs/new-orchestrator-overview.md)
 - [docs/auto-provisioning.md](docs/auto-provisioning.md)

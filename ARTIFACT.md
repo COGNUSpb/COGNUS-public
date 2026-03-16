@@ -11,6 +11,11 @@ The public artifact is intended to be:
 - sustainable as a curated, public-safe repository snapshot;
 - reproducible without private credentials or pre-generated runtime state.
 
+## Public Assessment Access
+
+- Dashboard URL for the public assessment endpoint: `http://200.137.197.215:8081`
+- Access mode: the application exposed through this endpoint allows self-registration for the `operator` role.
+
 ## Included In The Public Artifact
 
 - `cello-v2/`: adapted control plane, dashboard, API Engine, and agents.
